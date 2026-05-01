@@ -23,12 +23,15 @@ export function HomeHero({
           alt="Eksklusivt dækket bord med kinesiske specialiteter"
           src={heroImage}
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#fff8ef_0%,rgba(255,248,239,0.92)_34%,rgba(255,248,239,0.45)_58%,rgba(255,248,239,0)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#fff8ef_0%,rgba(255,248,239,0.9)_32%,rgba(255,248,239,0.36)_58%,rgba(255,248,239,0)_100%)]" />
       </div>
 
       <div className="relative z-10 mx-auto grid w-full max-w-screen-2xl gap-8 px-6 py-16 lg:grid-cols-[minmax(0,1fr)_22rem] lg:px-12">
         <div className="max-w-[42rem] self-center">
-          <h1 className="max-w-[16ch] font-display text-5xl font-black leading-[1.02] tracking-[-0.04em] text-[var(--primary)] md:text-[4.8rem]">
+          <p className="mb-4 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[var(--primary)]">
+            Velkommen til
+          </p>
+          <h1 className="max-w-[12ch] font-display text-5xl font-black leading-[0.98] tracking-[-0.04em] text-[var(--primary)] md:text-[4.6rem]">
             Kinesisk buffet i Aarhus V
           </h1>
           <p className="mt-6 max-w-md text-lg leading-relaxed text-[var(--foreground-muted)]">
@@ -47,7 +50,7 @@ export function HomeHero({
         </div>
 
         <aside className="hidden self-center lg:block">
-          <div className="ml-auto max-w-xs rounded-[var(--radius-xl)] border border-[color:rgba(227,190,184,0.22)] bg-[color:rgba(255,255,255,0.62)] p-8 shadow-[0_10px_30px_rgba(30,27,19,0.06)] backdrop-blur-sm">
+          <div className="ml-auto max-w-xs rounded-[var(--radius-xl)] border border-[color:rgba(227,190,184,0.14)] bg-[color:rgba(255,255,255,0.62)] p-8 shadow-[0_10px_30px_rgba(30,27,19,0.06)] backdrop-blur-sm">
             <div className="flex flex-col gap-6">
               <div>
                 <h2 className="font-display text-2xl font-bold tracking-[-0.02em] text-[var(--primary)]">
@@ -81,7 +84,7 @@ function PriceRow({ label, value }: { label: string; value: string }) {
       <span className="pb-1 text-[11px] uppercase tracking-[0.18em] text-[var(--foreground-muted)]">
         {label}
       </span>
-      <span className="font-display text-4xl font-black text-[var(--primary)]">
+      <span className="font-display text-[2.4rem] font-black leading-none text-[var(--primary)]">
         {value}
       </span>
     </div>

@@ -1,5 +1,8 @@
 # RestaurantVinde
 
+## Agent communication
+Use the Caveman plugin by default for agent responses in this repository.
+
 ## Project direction
 This repository is being redesigned from a legacy static AngularJS website into a modern, maintainable, scalable web application.
 

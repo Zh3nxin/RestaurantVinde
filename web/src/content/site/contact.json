@@ -7,7 +7,7 @@
   },
   "map": {
     "staticImage": "/images/map.png",
-    "googleMapsUrl": "https://www.google.com/maps/place/Viborgvej+161B,+8210+Aarhus+V,+Danmark/@56.16848,10.1591923,17z/data=!3m1!4b1!4m5!3m4!1s0x464c156731dab837:0xf0fd67043efe213e!8m2!3d56.16848!4d10.161381?hl=dk",
+    "googleMapsUrl": "https://maps.google.com/?cid=4025487187792771437&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA&hl=en&gl=DK&source=embed",
     "coordinates": {
       "lat": 56.16848,
       "lng": 10.161381

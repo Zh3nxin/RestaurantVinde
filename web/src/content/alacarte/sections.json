@@ -133,5 +133,85 @@
         ]
       }
     ]
+  },
+  {
+    "id": "drikkevarer",
+    "title": "Drikkevarer",
+    "groups": [
+      {
+        "title": "Spiritus (3 cl.)",
+        "items": [
+          { "number": "130.", "name": "Tesseron Evolution VSOP, Cognac", "dineInPrice": 40 },
+          { "number": "131.", "name": "Daniel Bouju Selection Special, Cognac", "dineInPrice": 48 },
+          { "number": "132.", "name": "Daniel Bouju XO Carate, Cognac", "dineInPrice": 90 },
+          { "number": "133.", "name": "Drouin Selection, Calvados", "dineInPrice": 38 },
+          { "number": "134.", "name": "Glen Dowan Special Reserve, Whisky", "dineInPrice": 38 },
+          { "number": "135.", "name": "Tullamore Dew, Whisky", "dineInPrice": 45 },
+          { "number": "136.", "name": "Chivas Regal 12 years, Whisky", "dineInPrice": 55 },
+          { "number": "137.", "name": "Sambuca Luxardo", "dineInPrice": 38 },
+          { "number": "138.", "name": "Grand Marnier, Soutrhern Comfort, Contreau", "dineInPrice": 45 },
+          { "number": "139.", "name": "Gin, Rom, Vodka", "dineInPrice": 38 },
+          { "number": "140.", "name": "Pernod", "dineInPrice": 38 },
+          { "number": "141.", "name": "Gammel Dansk, Von Oosten", "dineInPrice": 35 },
+          { "number": "142.", "name": "Akvafit Taffel", "dineInPrice": 35 }
+        ]
+      },
+      {
+        "title": "Cocktail/Aperitif/Hedvin (5 cl.)",
+        "items": [
+          { "number": "145.", "name": "Martini Bianco, Dry", "dineInPrice": 38 },
+          { "number": "146.", "name": "Kir (10 cl.)", "dineInPrice": 38 },
+          { "number": "147.", "name": "Martini Cocktail", "dineInPrice": 48 },
+          { "number": "148.", "name": "Kinesisk blomstervin", "dineInPrice": 38 },
+          { "number": "149.", "name": "Lustau Los Arcos", "dineInPrice": 38 },
+          { "number": "150.", "name": "Graham's Fine White Port", "dineInPrice": 38 },
+          { "number": "151.", "name": "Sake (45,00 kr. / 85,00 kr.)", "dineInPrice": 45 }
+        ]
+      },
+      {
+        "title": "Sodavand/juice/øl/te",
+        "items": [
+          { "number": "152.", "name": "LILLE | Coca-cola, Coca-cola Zero, Fanta Orange, Carlsberg Sport, Schweppes Lemon, Danskvand", "dineInPrice": 35 },
+          { "number": "153.", "name": "MELLEM | Coca-cola, Coca-cola Zero, Fanta Orange, Carlsberg Sport, Schweppes Lemon, Danskvand", "dineInPrice": 50 },
+          { "number": "154.", "name": "STOR | Coca-cola, Coca-cola Zero, Fanta Orange, Carlsberg Sport, Schweppes Lemon, Danskvand", "dineInPrice": 62 },
+          { "number": "155.", "name": "LILLE | Fuze Tea Peach", "dineInPrice": 33 },
+          { "number": "156.", "name": "MELLEM | Fuze Tea Peach", "dineInPrice": 48 },
+          { "number": "157.", "name": "STOR | Fuze Tea Peach", "dineInPrice": 60 },
+          { "number": "158.", "name": "Kildevæld uden brus", "dineInPrice": 25 },
+          { "number": "159.", "name": "LILLE | iste", "dineInPrice": 33 },
+          { "number": "160.", "name": "MELLEM | iste", "dineInPrice": 48 },
+          { "number": "161.", "name": "STOR | iste", "dineInPrice": 60 },
+          { "number": "162.", "name": "LILLE | hyldeblomst", "dineInPrice": 33 },
+          { "number": "163.", "name": "MELLEM | hyldeblomst", "dineInPrice": 48 },
+          { "number": "164.", "name": "STOR | hyldeblomst", "dineInPrice": 60 },
+          { "number": "165.", "name": "LILLE | appelsinjuice", "dineInPrice": 30 },
+          { "number": "166.", "name": "MELLEM | appelsinjuice", "dineInPrice": 45 },
+          { "number": "167.", "name": "STOR | appelsinjuice", "dineInPrice": 60 },
+          { "number": "168.", "name": "LILLE | æblejuice", "dineInPrice": 30 },
+          { "number": "169.", "name": "MELLEM | æblejuice", "dineInPrice": 45 },
+          { "number": "170.", "name": "STOR | æblejuice", "dineInPrice": 60 },
+          { "number": "171.", "name": "Isvand - Pris pr. person ad. libitum", "dineInPrice": 25 },
+          { "number": "172.", "name": "LILLE | 1 glas mælk", "dineInPrice": 15 },
+          { "number": "173.", "name": "MELLEM | 1 glas mælk", "dineInPrice": 28 },
+          { "number": "174.", "name": "STOR | 1 glas mælk", "dineInPrice": 38 },
+          { "number": "175.", "name": "LILLE | Tuborg Classic Fadøl", "dineInPrice": 39 },
+          { "number": "176.", "name": "MELLEM | Tuborg Classic Fadøl", "dineInPrice": 55 },
+          { "number": "177.", "name": "STOR | Tuborg Classic Fadøl", "dineInPrice": 68 },
+          { "number": "178.", "name": "LILLE | Grøn Tuborg Fadøl", "dineInPrice": 39 },
+          { "number": "179.", "name": "MELLEM | Grøn Tuborg Fadøl", "dineInPrice": 55 },
+          { "number": "180.", "name": "STOR | Grøn Tuborg Fadøl", "dineInPrice": 68 },
+          { "number": "181.", "name": "Kronenbourg 1664 Blanc", "dineInPrice": 49 },
+          { "number": "182.", "name": "Jacobsen Yakima IPA", "dineInPrice": 49 },
+          { "number": "183.", "name": "Grimbergen Double Ambrée", "dineInPrice": 49 },
+          { "number": "184.", "name": "Grøn Tuborg", "dineInPrice": 38 },
+          { "number": "185.", "name": "Tuborg Classic", "dineInPrice": 38 },
+          { "number": "186.", "name": "Tuborg Classic 0.0", "dineInPrice": 38 },
+          { "number": "187.", "name": "Kinesisk øl Tsingtao", "dineInPrice": 45 },
+          { "number": "188.", "name": "Kinesisk the", "dineInPrice": 35 },
+          { "number": "189.", "name": "Kaffe pr. person", "dineInPrice": 25 },
+          { "number": "190.", "name": "Irish Coffee", "dineInPrice": 48 }
+        ]
+      }
+    ]
   }
 ]

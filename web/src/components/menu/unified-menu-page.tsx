@@ -3,7 +3,7 @@ import { listAlaCarteSections, listMenuItems } from "@/data/menu";
 import { formatPrice } from "@/lib/format";
 
 const sectionLinks = [
-  { id: "sammensatte", label: "Sammensatte Menuer" },
+  { id: "sammensatte", label: "Sammensatte menuer" },
   { id: "selskabs", label: "Selskabsmenuer" },
   { id: "forretter", label: "Forretter" },
   { id: "hovedretter", label: "Hovedretter" },
@@ -33,6 +33,7 @@ export function UnifiedMenuPage() {
   );
   const kids = alacarteSections.find((section) => section.id === "kids");
   const desserts = alacarteSections.find((section) => section.id === "desserts");
+  const drikkevarer = alacarteSections.find((section) => section.id === "drikkevarer");
 
   return (
     <div className="bg-[var(--background)]">
@@ -43,7 +44,7 @@ export function UnifiedMenuPage() {
           {sectionLinks.map((link, index) => (
             <a
               key={link.id}
-              href={link.id === "drikkevarer" ? "/drinks" : `#${link.id}`}
+              href={`#${link.id}`}
               className={`whitespace-nowrap transition-colors hover:text-[var(--primary)] ${
                 index === 0
                   ? "border-b-2 border-[var(--primary-strong)] font-bold text-[var(--primary-strong)]"
@@ -121,6 +122,15 @@ export function UnifiedMenuPage() {
           title={desserts.title}
           tone="soft"
           groups={desserts.groups}
+        />
+      ) : null}
+
+      {drikkevarer ? (
+        <AlaCarteSection
+          id="drikkevarer"
+          title={drikkevarer.title}
+          tone="surface"
+          groups={drikkevarer.groups}
         />
       ) : null}
     </div>

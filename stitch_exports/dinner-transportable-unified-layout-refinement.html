@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="da"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#410000",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-bright": "#fff8ef",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#261900",
+                        "inverse-primary": "#ffb4a8",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "on-background": "#1e1b13",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "on-primary-fixed-variant": "#920703",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#e5e2e1",
+                        "surface-container": "#f5edde",
+                        "primary": "#610000",
+                        "surface-container-low": "#fbf3e4",
+                        "on-surface": "#1e1b13",
+                        "on-primary-container": "#ff907f",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "secondary-fixed-dim": "#e9c176",
+                        "on-error": "#ffffff",
+                        "primary-container": "#8b0000",
+                        "surface-variant": "#e9e2d3",
+                        "secondary-container": "#fed488",
+                        "outline": "#8e706b",
+                        "background": "#fff8ef",
+                        "inverse-surface": "#343026",
+                        "surface": "#fff8ef",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#e3beb8",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#775a19",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-surface-variant": "#5a403c",
+                        "surface-container-highest": "#e9e2d3",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#efe7d9",
+                        "inverse-on-surface": "#f8f0e1",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#b52619",
+                        "surface-dim": "#e1d9cb",
+                        "tertiary-container": "#434242",
+                        "on-tertiary-container": "#b1aeae",
+                        "on-secondary-container": "#785a1a",
+                        "tertiary": "#2c2c2c",
+                        "primary-fixed": "#ffdad4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "display": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #fff8ef;
+            color: #1e1b13;
+        }
+        .serif-text { font-family: 'Noto Serif', serif; }
+        .glass-header {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="surface-bright text-on-surface overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-red-950/90 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-2xl shadow-black/5">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-5xl mx-auto">
+<div class="text-2xl font-serif italic text-white tracking-tight">The Nordic Silk Road</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-red-100/80 hover:text-white transition-colors font-label text-sm uppercase tracking-widest" href="#">Buffet nr. 1</a>
+<a class="text-red-100/80 hover:text-white transition-colors font-label text-sm uppercase tracking-widest" href="#">Buffet nr. 2</a>
+<a class="text-red-100/80 hover:text-white transition-colors font-label text-sm uppercase tracking-widest" href="#">Buffet nr. 3</a>
+<a class="text-red-100/80 hover:text-white transition-colors font-label text-sm uppercase tracking-widest" href="#">A La Carte</a>
+<a class="text-red-100/80 hover:text-white transition-colors font-label text-sm uppercase tracking-widest" href="#">Desserts</a>
+</nav>
+<button class="bg-secondary text-white px-6 py-2 rounded-xl font-label text-sm uppercase tracking-widest hover:bg-secondary/90 transition-all active:scale-95">
+                Book a Table
+            </button>
+</div>
+</header>
+<!-- Secondary Sticky Anchor Nav -->
+<nav class="bg-surface-container-low border-y border-outline-variant/15 sticky top-[72px] z-40">
+<div class="max-w-5xl mx-auto px-8 py-3 flex justify-center gap-8 overflow-x-auto no-scrollbar">
+<a class="font-label text-xs uppercase tracking-widest text-primary font-bold border-b border-primary" href="#buffet1">Buffet nr. 1</a>
+<a class="font-label text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#buffet2">Buffet nr. 2</a>
+<a class="font-label text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#buffet3">Afhentet buffet nr. 3</a>
+<a class="font-label text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap" href="#buffet4">Afhentet buffet nr. 4</a>
+</div>
+</nav>
+<main class="max-w-[980px] mx-auto px-8 pt-16 pb-24">
+<!-- Page Title & Intro -->
+<header class="text-center mb-20">
+<h1 class="serif-text text-5xl md:text-6xl text-primary mb-8 font-bold tracking-tight">Dinner Transportable</h1>
+<div class="max-w-[620px] mx-auto">
+<p class="text-body-lg text-on-surface-variant leading-relaxed mb-4">
+                    Skal du holde arrangement hjemme, på arbejdspladsen eller til fest, tilbyder vi Dinner Transportable. Vi hjælper gerne med en løsning, der passer til jeres behov.
+                </p>
+<p class="text-label-sm text-secondary italic font-medium">
+                    Bestilles til minimum antal personer. Kontakt os gerne for spørgsmål eller særlige ønsker.
+                </p>
+</div>
+</header>
+<!-- Menu Sections Container -->
+<div class="flex flex-col gap-24">
+<!-- Buffet nr. 1 -->
+<section class="group" id="buffet1">
+<div class="flex justify-between items-baseline mb-8">
+<h2 class="serif-text text-3xl text-primary font-bold">Buffet nr. 1</h2>
+<div class="text-right">
+<span class="serif-text text-2xl text-primary">178,-</span>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">Min. 20 personer</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-12 text-on-surface/90 leading-relaxed">
+<p>Dybstege kongerejer</p><p>Dybstegt kylling</p><p>Dybstegt blæksprutte</p>
+<p>Dybstegt wan-ton</p><p>Chickenwings</p><p>Forårsruller</p>
+<p>Kylling i karry</p><p>Gongbao kylling</p><p>Oksekød med stærk sauce</p>
+<p>Stegte nudler</p><p>Svinekød med bambusskud og champignonsauce</p><p>Andesteg</p>
+<p>Oksekød deluxe med hai xin sauce</p><p>Ribben med honningsauce</p><p>Frisk frugt</p>
+<p>Sur-sød sauce</p><p>Soya sauce</p><p>Chili sauce</p>
+<p>Champignonsauce</p><p>Ris</p>
+</div>
+<hr class="mt-12 border-outline-variant/15"/>
+</section>
+<!-- Buffet nr. 2 -->
+<section id="buffet2">
+<div class="flex justify-between items-baseline mb-8">
+<h2 class="serif-text text-3xl text-primary font-bold">Buffet nr. 2</h2>
+<div class="text-right">
+<span class="serif-text text-2xl text-primary">198,-</span>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">Min. 20 personer</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-y-4 gap-x-12 text-on-surface/90 leading-relaxed mb-10">
+<p>Samme retter som nr. 1</p><p>Frisk Salat</p>
+</div>
+<!-- Sushi Sub-list -->
+<div class="bg-surface-container-low p-8 rounded-xl relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-label text-xs uppercase tracking-[0.2em] text-secondary mb-6 font-bold">Inkluderet Sushi Selection</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-medium italic text-on-surface-variant">
+<p>2 skiver futo maki</p>
+<p>2 skiver hoso maki</p>
+<p>2 skiver ura maki</p>
+<p>1 nigiri og tilbehør</p>
+</div>
+</div>
+<!-- Decorative Graphic element -->
+<div class="absolute right-[-20px] bottom-[-20px] opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[120px]" data-icon="restaurant">restaurant</span>
+</div>
+</div>
+<hr class="mt-12 border-outline-variant/15"/>
+</section>
+<!-- Image Break -->
+<figure class="my-8 rounded-none overflow-hidden aspect-[16/9] shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="An exquisite close-up of a high-end buffet spread featuring golden crispy tempura shrimp and vibrant stir-fried dishes. The lighting is warm and dramatic, highlighting the rich textures and steam rising from the plates. The scene is set in a luxury restaurant with dark wood surfaces and soft ambient background lighting, reflecting a fusion of Nordic minimalism and Chinese culinary tradition. The composition is professional and food-forward." src="https://lh3.googleusercontent.com/aida/ADBb0uiQdp5uE3PEFrwpyJcCJnZ7uawMIibNXxpRaIq3X_OP2yI1DhAR_08U-JYz_krt5s_bKg7-gM707vQtO9Ons7sGTnoJCpr9apbcKTCmr8an22yMH6xG7kB2sK63E06DxG9K6KgT9omB3StoejooQvxc4188vyKEVNrmreaZrJESCHPkLhF1mMEy4ujlVZ6C-PfivE3VTxsbP_id715HqSfm_NSkoQhE-FQ6wQSlt6QX57f9TAKgnNfTp7OayDc8OqbpkHGVxr3IPpo"/>
+</figure>
+<!-- Afhentet buffet nr. 3 -->
+<section id="buffet3">
+<div class="flex justify-between items-baseline mb-8">
+<h2 class="serif-text text-3xl text-primary font-bold">Afhentet buffet nr. 3</h2>
+<div class="text-right">
+<span class="serif-text text-2xl text-primary">158,-</span>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">Min. 10 personer</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12 text-on-surface/90 leading-relaxed">
+<p>Dybstege kongerejer</p><p>Dybstegt kylling</p>
+<p>Oksekød med stærk sauce</p><p>Forårsruller</p>
+<p>Kylling i karry</p><p>Svinekød med bambusskud og champignonsauce</p>
+<p>Stegte nudler</p><p>Oksekød deluxe med grøntsager</p>
+<p>Salat</p><p>Ris</p>
+<p>Sur-sød sauce</p><p>Karrysauce</p>
+</div>
+<hr class="mt-12 border-outline-variant/15"/>
+</section>
+<!-- Afhentet buffet nr. 4 -->
+<section id="buffet4">
+<div class="flex justify-between items-baseline mb-8">
+<h2 class="serif-text text-3xl text-primary font-bold">Afhentet buffet nr. 4</h2>
+<div class="text-right">
+<span class="serif-text text-2xl text-primary">158,-</span>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">Min. 5 personer</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12 text-on-surface/90 leading-relaxed">
+<p>Dybstege kongerejer</p><p>Dybstegt kylling</p>
+<p>Oksekød med stærk sauce</p><p>Forårsruller</p>
+<p>Kylling i karry</p><p>Stegte nudler</p>
+<p>Sur-sød sauce</p><p>Ris</p>
+<p>Karrysauce</p>
+</div>
+</section>
+</div>
+<!-- Footer Link -->
+<div class="mt-32 text-center">
+<a class="inline-flex items-center gap-3 text-primary serif-text text-xl font-bold hover:gap-5 transition-all group" href="#">
+                Kontakt os om Dinner Transportable
+                <span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-red-950 dark:bg-black full-width py-12">
+<div class="flex flex-col items-center justify-center gap-8 w-full max-w-4xl mx-auto text-center px-8">
+<div class="text-xl font-serif text-amber-500">The Nordic Silk Road</div>
+<div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+<a class="font-label text-sm text-red-100/60 hover:text-amber-400 underline-offset-8 transition-all" href="#">Contact</a>
+<a class="font-label text-sm text-red-100/60 hover:text-amber-400 underline-offset-8 transition-all" href="#">Locations</a>
+<a class="font-label text-sm text-red-100/60 hover:text-amber-400 underline-offset-8 transition-all" href="#">Our Story</a>
+<a class="font-label text-sm text-red-100/60 hover:text-amber-400 underline-offset-8 transition-all" href="#">Privacy</a>
+<a class="font-label text-sm text-red-100/60 hover:text-amber-400 underline-offset-8 transition-all" href="#">Reservation Policy</a>
+</div>
+<div class="text-xs font-label text-red-100/40 uppercase tracking-widest">
+                © 2024 THE NORDIC SILK ROAD. Meticulously Curated.
+            </div>
+</div>
+</footer>
+</body></html>

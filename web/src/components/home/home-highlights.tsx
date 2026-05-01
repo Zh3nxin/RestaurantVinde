@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 
 const highlights = [
   {
@@ -32,38 +33,68 @@ const highlights = [
 
 export function HomeHighlights() {
   return (
-    <section id="buffet-info" className="bg-[var(--background)] py-12">
+    <section
+      id="buffet-info"
+      className="relative z-10 -mt-16 bg-[var(--background)] pb-16 pt-8"
+    >
       <div className="mx-auto max-w-screen-2xl px-6 lg:px-12">
-        <div className="mb-8 flex items-baseline justify-between gap-6">
-          <h2 className="font-display text-3xl text-[var(--primary)]">
-            Dette er inkluderet i buffeten
+        <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-baseline md:justify-between">
+          <h2 className="font-display text-3xl italic text-[var(--primary)] md:text-4xl">
+            Det finder du i buffeten
           </h2>
+          <Link
+            href="/menu"
+            className="inline-flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.18em] text-[var(--primary)] transition-opacity hover:opacity-70"
+          >
+            Se hele menuen
+            <span aria-hidden="true" className="text-sm">
+              →
+            </span>
+          </Link>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {highlights.map((item) => (
             <article
               key={item.title}
-              className="group overflow-hidden rounded-[var(--radius-xl)]"
+              className="group overflow-hidden rounded-[var(--radius-xl)] shadow-[0_10px_24px_rgba(30,27,19,0.06)] transition-shadow duration-300 hover:shadow-[0_16px_32px_rgba(30,27,19,0.1)]"
               style={{ background: item.background }}
             >
-              <div className="h-48 overflow-hidden">
+              <div className="h-56 overflow-hidden">
                 <img
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   alt={item.title}
                   src={item.image}
                 />
               </div>
-              <div className="p-6">
-                <h3 className="font-display text-xl text-[var(--foreground)]">
+              <div className="p-5">
+                <h3 className="font-display text-lg font-bold text-[var(--primary)]">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm text-[var(--foreground-muted)]">
+                <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[var(--foreground-muted)]">
                   {item.description}
                 </p>
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="mx-auto mt-10 max-w-3xl text-center text-sm leading-relaxed text-[color:rgba(90,64,60,0.78)]">
+          <p>
+            Skal du holde arrangement hjemme, på arbejdspladsen eller til
+            fest?
+          </p>
+          <p className="mt-2">
+            Vi tilbyder også Dinner Transportable og hjælper gerne med en
+            løsning, der passer til jeres behov.
+          </p>
+          <Link
+            href="/dinner-transportable"
+            className="mt-3 inline-block font-semibold transition-colors hover:underline hover:underline-offset-3"
+            style={{ color: "var(--primary)" }}
+          >
+            Læs mere om Dinner Transportable →
+          </Link>
         </div>
       </div>
     </section>

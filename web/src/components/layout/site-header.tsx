@@ -12,6 +12,7 @@ const headerLinks = [
   { label: "Hjem", href: "/" },
   { label: "Menu", href: "/menu" },
   { label: "Takeaway", href: "/takeaway" },
+  { label: "Dinner Transportable", href: "/dinner-transportable" },
   { label: "Kontakt", href: "/#contact" },
 ];
 
