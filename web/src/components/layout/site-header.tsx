@@ -4,19 +4,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-type SiteHeaderProps = {
-  bookHref: string;
-};
-
 const headerLinks = [
   { label: "Hjem", href: "/" },
   { label: "Menu", href: "/menu" },
-  { label: "Takeaway", href: "/takeaway" },
   { label: "Dinner Transportable", href: "/dinner-transportable" },
   { label: "Kontakt", href: "/#contact" },
 ];
 
-export function SiteHeader({ bookHref }: SiteHeaderProps) {
+export function SiteHeader() {
   const pathname = usePathname();
   const [hash, setHash] = useState("");
 
@@ -71,15 +66,11 @@ export function SiteHeader({ bookHref }: SiteHeaderProps) {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-6">
-          <Link
-            href={bookHref}
-            className="rounded-[var(--radius-xl)] bg-[var(--background)] px-6 py-2 text-[11px] font-bold uppercase tracking-[0.1em] transition-colors hover:bg-white"
-            style={{ color: "#8B0000" }}
-          >
-            Reserver Bord
-          </Link>
-        </div>
+        <div
+          aria-hidden="true"
+          className="hidden h-10 w-[148px] shrink-0 md:block"
+        />
+
       </div>
     </header>
   );

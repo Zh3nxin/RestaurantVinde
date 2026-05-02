@@ -31,14 +31,11 @@ export function HomeHero({
           <p className="mb-4 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[var(--primary)]">
             Velkommen til
           </p>
-          <h1 className="max-w-[12ch] font-display text-5xl font-black leading-[0.98] tracking-[-0.04em] text-[var(--primary)] md:text-[4.6rem]">
+          <h1 className="max-w-[14ch] font-display text-5xl font-black leading-[0.98] tracking-[-0.04em] text-[var(--primary)] md:text-[4.6rem]">
             Kinesisk buffet i Aarhus V
           </h1>
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-[var(--foreground-muted)]">
-            En eksklusiv gastronomisk rejse gennem Kinas provinser. Autentisk
-            håndværk møder nordisk elegance.
-          </p>
-          <div className="mt-8 flex gap-4">
+
+          <div className="mt-24 flex gap-4">
             <Link
               href={bookHref}
               className="inline-flex items-center rounded-[var(--radius-xl)] bg-[var(--primary)] px-8 py-4 text-[12px] font-extrabold uppercase tracking-[0.18em] shadow-[0_24px_40px_rgba(97,0,0,0.14)] transition-colors hover:bg-[var(--primary-strong)]"

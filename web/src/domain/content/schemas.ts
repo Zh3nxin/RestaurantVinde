@@ -130,19 +130,6 @@ export const heroSchema = z.object({
 });
 export type HeroContent = z.infer<typeof heroSchema>;
 
-export const takeawayInfoSchema = z.object({
-  intro: z.string(),
-  channels: z.array(
-    z.object({
-      label: z.string(),
-      value: z.string(),
-      href: z.string(),
-    })
-  ),
-  deliveryNotes: z.array(z.string()),
-});
-export type TakeawayInfo = z.infer<typeof takeawayInfoSchema>;
-
 export const dinnerPackageSchema = z.object({
   id: z.string(),
   name: z.string(),

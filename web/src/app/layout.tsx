@@ -18,8 +18,7 @@ const notoSerif = Noto_Serif({
 
 export const metadata: Metadata = {
   title: "Restaurant Vinde",
-  description:
-    "Buffet, sushi og takeaway i Aarhus V – oplev Restaurant Vinde.",
+  description: "Buffet og sushi i Aarhus V – oplev Restaurant Vinde.",
 };
 
 export default function RootLayout({
@@ -37,7 +36,7 @@ export default function RootLayout({
     >
       <body>
         <div className="flex min-h-screen flex-col">
-          <SiteHeader bookHref={`tel:${primaryPhone}`} />
+          <SiteHeader />
 
           <main className="flex-1 pt-20">{children}</main>
 
@@ -70,19 +69,19 @@ export default function RootLayout({
 
                 <div className="space-y-1">
                   <p className="mb-1 font-display text-sm uppercase tracking-[0.14em] text-white">
-                    Takeaway
+                    Sider
                   </p>
                   <Link
-                    href="/takeaway"
+                    href="/menu"
                     className="block transition-colors hover:text-white"
                   >
-                    Afhentning
+                    Menu
                   </Link>
                   <Link
-                    href="/takeaway"
+                    href="/contact"
                     className="block transition-colors hover:text-white"
                   >
-                    Levering
+                    Kontakt
                   </Link>
                 </div>
 

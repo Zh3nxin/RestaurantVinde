@@ -100,7 +100,7 @@ export default function DinnerTransportablePage() {
     <div className="bg-[var(--background)]">
       <div className="px-8 py-20 lg:px-14 lg:py-24">
         <div className="mx-auto max-w-4xl">
-          <header className="mb-20 text-center">
+          <header className="text-center">
             <h1 className="font-display text-5xl tracking-[-0.03em] text-[var(--primary)]">
               Dinner Transportable
             </h1>

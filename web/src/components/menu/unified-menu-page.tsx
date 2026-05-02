@@ -73,9 +73,7 @@ export function UnifiedMenuPage() {
 
       <MenuCollectionSection
         id="selskabs"
-        eyebrow="Store oplevelser"
         title="Selskabsmenuer"
-        intro="En kurateret rejse gennem de fineste traditioner, skabt til at deles."
         tone="surface"
         items={selskabsmenuer.map((item) => ({
           title: item.name,

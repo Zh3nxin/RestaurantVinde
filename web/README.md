@@ -38,5 +38,5 @@ When `NEXT_BASE_PATH` is set, the exported site expects to live inside that subf
 
 - JSON files in `src/content` are parsed once when the server boots, using the Zod schemas in `src/domain/content/schemas.ts`.
   - Menu-specific data sits under `src/content/menu`, `alacarte`, `sushi`, etc., and is exposed via helper functions in `src/data/menu.ts`.
-  - General site chrome (hero, navigation, contact info, opening hours, takeaway info) lives under `src/content/site` and is read through `src/data/site.ts`.
+  - General site chrome (hero, navigation, contact info, opening hours) lives under `src/content/site` and is read through `src/data/site.ts`.
 - Pages never import JSON directly; they call the helpers above. When it’s time to connect a CMS or database for price management, replace the internals of those helper modules with API/database calls and the UI won’t need to change.

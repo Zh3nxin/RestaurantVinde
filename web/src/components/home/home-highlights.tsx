@@ -42,15 +42,6 @@ export function HomeHighlights() {
           <h2 className="font-display text-3xl italic text-[var(--primary)] md:text-4xl">
             Det finder du i buffeten
           </h2>
-          <Link
-            href="/menu"
-            className="inline-flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.18em] text-[var(--primary)] transition-opacity hover:opacity-70"
-          >
-            Se hele menuen
-            <span aria-hidden="true" className="text-sm">
-              →
-            </span>
-          </Link>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
