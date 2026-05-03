@@ -1,5 +1,5 @@
-import { UnifiedMenuPage } from "@/components/menu/unified-menu-page";
+import { MenuPageContent } from "@/components/menu/menu-page-content";
 
 export default function MenuPage() {
-  return <UnifiedMenuPage />;
+  return <MenuPageContent />;
 }

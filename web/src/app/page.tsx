@@ -6,7 +6,7 @@ import { getContactDetails, getOpeningHours } from "@/data/site";
 export default function Home() {
   const hours = getOpeningHours();
   const contact = getContactDetails();
-  const primaryPhone = contact.phoneNumbers[0]?.replace(/\s+/g, "") || "/contact";
+  const primaryPhone = contact.phoneNumbers[0]?.replace(/\s+/g, "") || "/#contact";
   const weekdayPrice = "198,-";
   const weekendPrice = "218,-";
 

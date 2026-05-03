@@ -1,47 +1,20 @@
 import { MenuSectionRail } from "@/components/menu/menu-section-rail";
-import { listAlaCarteSections, listMenuItems } from "@/data/menu";
+import { PageSection } from "@/components/sections/page-section";
 import { formatPrice } from "@/lib/format";
 
-const sectionLinks = [
-  { id: "sammensatte", label: "Sammensatte menuer" },
-  { id: "selskabs", label: "Selskabsmenuer" },
-  { id: "forretter", label: "Forretter" },
-  { id: "hovedretter", label: "Hovedretter" },
-  { id: "desserts", label: "Desserter" },
-  { id: "drikkevarer", label: "Drikkevarer" },
-];
-
-const courseLabels: Record<string, string> = {
-  forretter: "Forretter",
-  mellemretter: "Mellemretter",
-  hovedretter: "Hovedretter",
-  dessert: "Dessert",
-  "små retter bestående af": "Små retter",
+export type SectionLink = {
+  id: string;
+  label: string;
 };
 
-export function UnifiedMenuPage() {
-  const menuItems = listMenuItems();
-  const alacarteSections = listAlaCarteSections();
-
-  const setMenus = menuItems.filter((item) => item.categoryId === "set-menus");
-  const selskabsmenuer = menuItems.filter(
-    (item) => item.categoryId === "selskabsmenuer"
-  );
-  const forretter = alacarteSections.find((section) => section.id === "forretter");
-  const hovedretter = alacarteSections.find(
-    (section) => section.id === "main-courses"
-  );
-  const kids = alacarteSections.find((section) => section.id === "kids");
-  const desserts = alacarteSections.find((section) => section.id === "desserts");
-  const drikkevarer = alacarteSections.find((section) => section.id === "drikkevarer");
-
+export function MenuPageNavigation({ links }: { links: SectionLink[] }) {
   return (
-    <div className="bg-[var(--background)]">
-      <MenuSectionRail links={sectionLinks} />
+    <>
+      <MenuSectionRail links={links} />
 
       <nav className="sticky top-20 z-30 border-b border-[color:rgba(227,190,184,0.2)] bg-[color:rgba(255,248,239,0.82)] backdrop-blur-xl xl:hidden">
         <div className="mx-auto flex w-full max-w-screen-xl gap-8 overflow-x-auto px-8 py-4 text-[13px] uppercase tracking-[0.18em] lg:justify-center">
-          {sectionLinks.map((link, index) => (
+          {links.map((link, index) => (
             <a
               key={link.id}
               href={`#${link.id}`}
@@ -56,92 +29,18 @@ export function UnifiedMenuPage() {
           ))}
         </div>
       </nav>
-
-      <MenuCollectionSection
-        id="sammensatte"
-        title="Sammensatte Menuer"
-        tone="low"
-        items={setMenus.map((item) => ({
-          title: item.name,
-          price: item.dineInPrice,
-          groups: Object.entries(item.courses).map(([label, values]) => ({
-            label: courseLabels[label] ?? label,
-            values,
-          })),
-        }))}
-      />
-
-      <MenuCollectionSection
-        id="selskabs"
-        title="Selskabsmenuer"
-        tone="surface"
-        items={selskabsmenuer.map((item) => ({
-          title: item.name,
-          price: item.dineInPrice,
-          groups: Object.entries(item.courses).map(([label, values]) => ({
-            label: courseLabels[label] ?? label,
-            values,
-          })),
-        }))}
-      />
-
-      {forretter ? (
-        <AlaCarteSection
-          id="forretter"
-          title={forretter.title}
-          tone="soft"
-          groups={forretter.groups}
-        />
-      ) : null}
-
-      {hovedretter ? (
-        <AlaCarteSection
-          id="hovedretter"
-          title="Hovedretter"
-          subtitle="MED RIS"
-          tone="low"
-          groups={hovedretter.groups}
-          footerNote="Flere retter tilgængelige i restauranten."
-        />
-      ) : null}
-
-      {kids ? (
-        <AlaCarteSection
-          id="kids"
-          title={kids.title}
-          tone="surface"
-          groups={kids.groups}
-        />
-      ) : null}
-
-      {desserts ? (
-        <AlaCarteSection
-          id="desserts"
-          title={desserts.title}
-          tone="soft"
-          groups={desserts.groups}
-        />
-      ) : null}
-
-      {drikkevarer ? (
-        <AlaCarteSection
-          id="drikkevarer"
-          title={drikkevarer.title}
-          tone="surface"
-          groups={drikkevarer.groups}
-        />
-      ) : null}
-    </div>
+    </>
   );
 }
 
-function MenuCollectionSection({
+export function MenuSetSection({
   id,
   title,
   eyebrow,
   intro,
   tone,
   items,
+  priceMode = "dine-in",
 }: {
   id: string;
   title: string;
@@ -150,16 +49,17 @@ function MenuCollectionSection({
   tone: "surface" | "soft" | "low";
   items: Array<{
     title: string;
-    price?: number | null;
+    dineInPrice?: number | null;
+    takeawayPrice?: number | null;
     groups: Array<{
       label: string;
       values: string[];
     }>;
   }>;
+  priceMode?: "dine-in" | "takeaway";
 }) {
   return (
-    <section id={id} className={`${sectionToneClasses[tone]} px-8 py-20 lg:px-14 lg:py-24`}>
-      <div className="mx-auto max-w-4xl">
+    <PageSection id={id} tone={tone}>
         <div className="mb-16 text-center">
           {eyebrow ? (
             <span className="mb-4 block text-[11px] uppercase tracking-[0.18em] text-[var(--accent)]">
@@ -178,7 +78,15 @@ function MenuCollectionSection({
 
         <div className="space-y-8">
           {items.map((item) => (
-            <UnifiedListRow key={item.title} title={item.title} price={item.price}>
+            <UnifiedListRow
+              key={item.title}
+              title={item.title}
+              price={
+                priceMode === "takeaway"
+                  ? item.takeawayPrice ?? item.dineInPrice
+                  : item.dineInPrice
+              }
+            >
               <div className="mt-2 space-y-2">
                 {item.groups.map((group) =>
                   group.values.length ? (
@@ -196,18 +104,18 @@ function MenuCollectionSection({
             </UnifiedListRow>
           ))}
         </div>
-      </div>
-    </section>
+    </PageSection>
   );
 }
 
-function AlaCarteSection({
+export function MenuItemSection({
   id,
   title,
   subtitle,
   tone,
   groups,
   footerNote,
+  priceMode = "dine-in",
 }: {
   id: string;
   title: string;
@@ -219,13 +127,14 @@ function AlaCarteSection({
       number: string;
       name: string;
       dineInPrice?: number | null;
+      takeawayPrice?: number | null;
     }>;
   }>;
   footerNote?: string;
+  priceMode?: "dine-in" | "takeaway";
 }) {
   return (
-    <section id={id} className={`${sectionToneClasses[tone]} px-8 py-20 lg:px-14 lg:py-24`}>
-      <div className="mx-auto max-w-4xl">
+    <PageSection id={id} tone={tone}>
         <div className="mb-16 text-center">
           <h2 className="font-display text-5xl tracking-[-0.03em] text-[var(--primary)]">
             {title}
@@ -254,7 +163,11 @@ function AlaCarteSection({
                   <UnifiedListRow
                     key={`${group.title ?? "items"}-${item.number}-${item.name}`}
                     title={item.name}
-                    price={item.dineInPrice}
+                    price={
+                      priceMode === "takeaway"
+                        ? item.takeawayPrice ?? item.dineInPrice
+                        : item.dineInPrice
+                    }
                     prefix={item.number}
                   />
                 ))}
@@ -270,8 +183,7 @@ function AlaCarteSection({
             </p>
           </div>
         ) : null}
-      </div>
-    </section>
+    </PageSection>
   );
 }
 
@@ -307,9 +219,3 @@ function UnifiedListRow({
     </div>
   );
 }
-
-const sectionToneClasses = {
-  surface: "bg-[var(--background)]",
-  soft: "bg-[var(--surface-soft)]",
-  low: "bg-[var(--surface-low)]",
-};

@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 const headerLinks = [
   { label: "Hjem", href: "/" },
   { label: "Menu", href: "/menu" },
+  { label: "Take Away", href: "/takeaway" },
   { label: "Dinner Transportable", href: "/dinner-transportable" },
   { label: "Kontakt", href: "/#contact" },
 ];
@@ -44,6 +45,8 @@ export function SiteHeader() {
               const isActive =
                 item.href === "/"
                   ? pathname === "/" && hash !== "#contact"
+                  : item.href === "/menu"
+                    ? pathname === "/menu"
                   : item.href === "/#contact"
                     ? pathname === "/" && hash === "#contact"
                     : pathname === item.href;

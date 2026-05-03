@@ -23,7 +23,6 @@
     ],
     "dineInPrice": null,
     "takeawayPrice": 178,
-    "currency": "DKK",
     "minGuests": 20
   },
   {
@@ -53,7 +52,6 @@
       "1 nigiri og tilbehør"
     ],
     "takeawayPrice": 198,
-    "currency": "DKK",
     "minGuests": 20
   },
   {
@@ -73,7 +71,6 @@
       "Ris og saucer"
     ],
     "takeawayPrice": 158,
-    "currency": "DKK",
     "minGuests": 10
   },
   {
@@ -90,7 +87,6 @@
       "Saucer og ris"
     ],
     "takeawayPrice": 158,
-    "currency": "DKK",
     "minGuests": 5
   }
 ]

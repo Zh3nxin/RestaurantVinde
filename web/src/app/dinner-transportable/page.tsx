@@ -1,105 +1,13 @@
-const buffetOne = {
-  title: "Diner transportable buffet nr. 1",
-  price: 178,
-  minBuy: 20,
-  contains: [
-    "Dygstegte kongerejer",
-    "Dybstegte kyllinger",
-    "Dybstegte blæksprutter",
-    "Dybstegte wan-ton",
-    "Chickenwings",
-    "Forårsruller",
-    "Kylling i karry",
-    "Gongbao kylling",
-    "Oksekød med stærk sauce",
-    "Stegte nudler",
-    "Svinekød med bambusskud og champignon sauce",
-    "Andesteg",
-    "Oksekød deluxe med hai xin sauce",
-    "Ribben med honning sauce",
-    "Frisk frugt",
-    "Sur-sød sauce",
-    "Soya souce",
-    "Chili sauce",
-    "Champignon sauce",
-    "Ris",
-  ],
-};
-
-const buffetTwo = {
-  title: "Diner transportable buffet nr. 2",
-  price: 198,
-  minBuy: 20,
-  contains: [
-    "Dygstegte kongerejer",
-    "Dybstegte kyllinger",
-    "Dybstegte blæksprutter",
-    "Chickenwings",
-    "Små forårsruller",
-    "Kylling i karry",
-    "Oksekød med stærk sauce",
-    "Stegte nudler",
-    "Svinekød med bambusskud og champignon sauce",
-    "Andesteg",
-    "Oksekød deluxe med hai xin sauce",
-    "Ribben med honning sauce",
-    "Frisk frugt",
-    "Salat",
-    "Sur-sød sauce",
-    "Soya souce",
-    "Chili sauce",
-    "Ris",
-  ],
-  sushi: [
-    "2 skiver futomaki",
-    "2 skiver hosomaki",
-    "2 skiver uramaki",
-    "1 nigiri + tilbehør",
-  ],
-};
-
-const buffetThree = {
-  title: "Afhentet buffet nr. 3",
-  price: 158,
-  minBuy: 10,
-  contains: [
-    "Dygstegte kongerejer",
-    "Dybstegte kyllinger",
-    "Oksekød med stærk sauce",
-    "Forårsruller",
-    "Kylling i karry",
-    "Svinekød med bambusskud og champignon sauce",
-    "Stegte nudler",
-    "Oksekød deluxe med grøntsager",
-    "Salat",
-    "Ris",
-    "Sur-sød sauce",
-    "Karry sauce",
-  ],
-};
-
-const buffetFour = {
-  title: "Afhentet buffet nr. 4",
-  price: 158,
-  minBuy: 5,
-  contains: [
-    "Dygstegte kongerejer",
-    "Dybstegte kyllinger",
-    "Oksekød med stærk sauce",
-    "Forårsruller",
-    "Kylling i karry",
-    "Stegte nudler",
-    "Sur-sød sauce",
-    "Ris",
-    "Karry sauce",
-  ],
-};
+import { PageSection } from "@/components/sections/page-section";
+import { listDinnerPackages } from "@/data/menu";
+import { formatPrice } from "@/lib/format";
 
 export default function DinnerTransportablePage() {
+  const packages = listDinnerPackages();
+
   return (
     <div className="bg-[var(--background)]">
-      <div className="px-8 py-20 lg:px-14 lg:py-24">
-        <div className="mx-auto max-w-4xl">
+      <PageSection tone="surface">
           <header className="text-center">
             <h1 className="font-display text-5xl tracking-[-0.03em] text-[var(--primary)]">
               Dinner Transportable
@@ -116,42 +24,21 @@ export default function DinnerTransportablePage() {
               </p>
             </div>
           </header>
-        </div>
-      </div>
+      </PageSection>
 
       <div className="space-y-0">
-        <BuffetSection
-          title="Buffet nr. 1"
-          price={buffetOne.price}
-          minBuy={buffetOne.minBuy}
-          items={buffetOne.contains}
-          tone="low"
-        />
-
-        <BuffetSection
-          title="Buffet nr. 2"
-          price={buffetTwo.price}
-          minBuy={buffetTwo.minBuy}
-          items={buffetTwo.contains}
-          sushiItems={buffetTwo.sushi}
-          tone="surface"
-        />
-
-        <BuffetSection
-          title={buffetThree.title}
-          price={buffetThree.price}
-          minBuy={buffetThree.minBuy}
-          items={buffetThree.contains}
-          tone="low"
-        />
-
-        <BuffetSection
-          title={buffetFour.title}
-          price={buffetFour.price}
-          minBuy={buffetFour.minBuy}
-          items={buffetFour.contains}
-          tone="surface"
-        />
+        {packages.map((pkg, index) => (
+          <BuffetSection
+            key={pkg.id}
+            title={pkg.name}
+            description={pkg.description}
+            price={pkg.takeawayPrice ?? pkg.dineInPrice ?? null}
+            minBuy={pkg.minGuests ?? null}
+            items={pkg.items}
+            sushiItems={pkg.sushi}
+            tone={index % 2 === 0 ? "low" : "surface"}
+          />
+        ))}
       </div>
     </div>
   );
@@ -159,6 +46,7 @@ export default function DinnerTransportablePage() {
 
 function BuffetSection({
   title,
+  description,
   price,
   minBuy,
   items,
@@ -166,33 +54,41 @@ function BuffetSection({
   tone,
 }: {
   title: string;
-  price: number;
-  minBuy: number;
+  description?: string | null;
+  price: number | null;
+  minBuy: number | null;
   items: string[];
   sushiItems?: string[];
   tone: "surface" | "low";
 }) {
   return (
-    <section
-      className={`px-8 py-14 lg:px-14 lg:py-24 ${
-        tone === "low" ? "bg-[var(--surface-low)]" : "bg-[var(--background)]"
-      }`}
-    >
-      <div className="mx-auto max-w-4xl">
+    <PageSection tone={tone} spacing="compact">
         <div className="mb-8 flex items-baseline justify-between gap-6">
-          <h2 className="font-display text-3xl font-bold text-[var(--primary)]">
-            {title}
-          </h2>
+          <div>
+            <h2 className="font-display text-3xl font-bold text-[var(--primary)]">
+              {title}
+            </h2>
+            {description ? (
+              <p className="mt-3 max-w-2xl text-sm text-[var(--foreground-muted)]">
+                {description}
+              </p>
+            ) : null}
+          </div>
+
           <div className="text-right">
-            <span className="font-display text-2xl text-[var(--primary)]">
-              {price},-
-              <span className="ml-2 align-middle text-sm font-sans font-medium tracking-normal text-[var(--foreground-muted)]">
-                pr. kuvert
+            {price != null ? (
+              <span className="font-display text-2xl text-[var(--primary)]">
+                {formatPrice(price)}
+                <span className="ml-2 align-middle text-sm font-sans font-medium tracking-normal text-[var(--foreground-muted)]">
+                  pr. person
+                </span>
               </span>
-            </span>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[var(--foreground-muted)]">
-              Min. {minBuy} kuverter
-            </p>
+            ) : null}
+            {minBuy != null ? (
+              <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-[var(--foreground-muted)]">
+                Min. {minBuy} personer
+              </p>
+            ) : null}
           </div>
         </div>
 
@@ -204,7 +100,7 @@ function BuffetSection({
           ))}
         </div>
 
-        {sushiItems ? (
+        {sushiItems?.length ? (
           <div className="mt-8">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
               Sushi (pr. kuvert)
@@ -218,7 +114,6 @@ function BuffetSection({
             </div>
           </div>
         ) : null}
-      </div>
-    </section>
+    </PageSection>
   );
 }

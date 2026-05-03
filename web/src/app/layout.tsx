@@ -78,7 +78,7 @@ export default function RootLayout({
                     Menu
                   </Link>
                   <Link
-                    href="/contact"
+                    href="/#contact"
                     className="block transition-colors hover:text-white"
                   >
                     Kontakt
@@ -88,7 +88,7 @@ export default function RootLayout({
                 <div className="space-y-1 md:text-right">
                   <p>CVR: 34887012</p>
                   <Link
-                    href="/contact"
+                    href="/#contact"
                     className="mb-2 inline-block underline decoration-[color:rgba(255,248,239,0.4)] underline-offset-2 transition-colors hover:text-white"
                   >
                     Smiley info

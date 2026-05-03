@@ -1,38 +1,29 @@
 import type {
-  MenuCategory,
-  MenuItem,
   BuffetPricing,
   ContactDetails,
   DinnerPackage,
   HeroContent,
-  NavigationItem,
+  MenuContent,
+  MenuItem,
+  MenuSetCategoryData,
+  MenuItemSectionData,
   OpeningHours,
-  AlaCarteSection,
-  SushiSection,
-  DrinkCategory,
   BuffetBenefit,
   BuffetGalleryItem,
   Review,
 } from "@/domain/content/schemas";
 
 export type {
-  MenuCategory,
+  MenuContent,
   MenuItem,
+  MenuSetCategoryData,
   BuffetPricing,
   ContactDetails,
   DinnerPackage,
   HeroContent,
-  NavigationItem,
   OpeningHours,
-  AlaCarteSection,
-  SushiSection,
-  DrinkCategory,
+  MenuItemSectionData,
   BuffetBenefit,
   BuffetGalleryItem,
   Review,
-};
-
-export type MoneyValue = {
-  amount: number;
-  currency: string;
 };

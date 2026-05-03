@@ -6,16 +6,6 @@ export const availabilitySchema = z.enum([
   "catering",
 ]);
 
-export const menuCategorySchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  slug: z.string(),
-  description: z.string(),
-  displayOrder: z.number().int(),
-  availability: z.array(availabilitySchema),
-});
-export type MenuCategory = z.infer<typeof menuCategorySchema>;
-
 const courseSectionSchema = z.record(z.string(), z.array(z.string()));
 
 export const menuItemSchema = z.object({
@@ -26,11 +16,41 @@ export const menuItemSchema = z.object({
   courses: courseSectionSchema.default({}),
   dineInPrice: z.number().nullable().optional(),
   takeawayPrice: z.number().nullable().optional(),
-  currency: z.string().default("DKK"),
   minGuests: z.number().int().nullable().optional(),
   availability: z.array(availabilitySchema).default(["dine-in"]),
 });
 export type MenuItem = z.infer<typeof menuItemSchema>;
+
+export const menuSetCategorySchema = z.object({
+  id: z.string(),
+  title: z.string(),
+});
+export type MenuSetCategoryData = z.infer<typeof menuSetCategorySchema>;
+
+export const menuContentSchema = z.object({
+  setCategories: z.array(menuSetCategorySchema).default([]),
+  items: z.array(menuItemSchema),
+  sections: z.array(
+    z.object({
+      id: z.string(),
+      title: z.string(),
+      groups: z.array(
+        z.object({
+          title: z.string().nullable(),
+          items: z.array(
+            z.object({
+              number: z.string(),
+              name: z.string(),
+              dineInPrice: z.number().nullable().optional(),
+              takeawayPrice: z.number().nullable().optional(),
+            })
+          ),
+        })
+      ),
+    })
+  ),
+});
+export type MenuContent = z.infer<typeof menuContentSchema>;
 
 export const buffetPricingSchema = z.object({
   id: z.string(),
@@ -42,7 +62,6 @@ export const buffetPricingSchema = z.object({
     childUnder12: z.number(),
     childUnder3: z.number(),
   }),
-  currency: z.string(),
   notes: z.array(z.string()),
   includes: z.array(z.string()),
   sushiIncluded: z.boolean().default(true),
@@ -102,12 +121,6 @@ export const contactSchema = z.object({
 });
 export type ContactDetails = z.infer<typeof contactSchema>;
 
-export const navigationItemSchema = z.object({
-  label: z.string(),
-  href: z.string(),
-});
-export type NavigationItem = z.infer<typeof navigationItemSchema>;
-
 export const heroSchema = z.object({
   eyebrow: z.string(),
   title: z.string(),
@@ -138,57 +151,28 @@ export const dinnerPackageSchema = z.object({
   sushi: z.array(z.string()).optional(),
   dineInPrice: z.number().nullable().optional(),
   takeawayPrice: z.number().nullable().optional(),
-  currency: z.string().default("DKK"),
   minGuests: z.number().int().nullable().optional(),
 });
 export type DinnerPackage = z.infer<typeof dinnerPackageSchema>;
 
-const alacarteItemSchema = z.object({
+const menuItemEntrySchema = z.object({
   number: z.string(),
   name: z.string(),
   dineInPrice: z.number().nullable().optional(),
   takeawayPrice: z.number().nullable().optional(),
 });
 
-const alacarteGroupSchema = z.object({
+const menuItemGroupSchema = z.object({
   title: z.string().nullable(),
-  items: z.array(alacarteItemSchema),
+  items: z.array(menuItemEntrySchema),
 });
 
-export const alacarteSectionSchema = z.object({
+export const menuItemSectionSchema = z.object({
   id: z.string(),
   title: z.string(),
-  groups: z.array(alacarteGroupSchema),
+  groups: z.array(menuItemGroupSchema),
 });
-export type AlaCarteSection = z.infer<typeof alacarteSectionSchema>;
-
-export const sushiItemSchema = z.object({
-  code: z.string(),
-  name: z.string(),
-  description: z.string().nullable().optional(),
-  price: z.number(),
-});
-
-export const sushiSectionSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  items: z.array(sushiItemSchema),
-});
-export type SushiSection = z.infer<typeof sushiSectionSchema>;
-
-export const drinkItemSchema = z.object({
-  name: z.string(),
-  type: z.string().nullable().optional(),
-  description: z.string().nullable().optional(),
-  price: z.number().nullable().optional(),
-});
-
-export const drinkCategorySchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  items: z.array(drinkItemSchema),
-});
-export type DrinkCategory = z.infer<typeof drinkCategorySchema>;
+export type MenuItemSectionData = z.infer<typeof menuItemSectionSchema>;
 
 export const buffetBenefitSchema = z.object({
   title: z.string(),

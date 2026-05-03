@@ -1,94 +1,49 @@
 import buffetData from "@/content/pricing/buffet.json";
-import menuCategoriesData from "@/content/menu/categories.json";
 import menuItemsData from "@/content/menu/items.json";
-import dinnerPackagesData from "@/content/dinner/packages.json";
-import alacarteSectionsData from "@/content/alacarte/sections.json";
-import sushiSectionsData from "@/content/sushi/sections.json";
-import drinkCategoriesData from "@/content/drinks/categories.json";
+import dinnerPackagesData from "@/content/dinner-transportable/items.json";
 import buffetBenefitsData from "@/content/buffet/benefits.json";
 import buffetGalleryData from "@/content/buffet/gallery.json";
-import reviewsData from "@/content/reviews.json";
 import {
-  alacarteSectionSchema,
   buffetBenefitSchema,
   buffetGalleryItemSchema,
   buffetPricingSchema,
   dinnerPackageSchema,
-  drinkCategorySchema,
-  menuCategorySchema,
+  menuContentSchema,
   menuItemSchema,
-  reviewSchema,
-  sushiSectionSchema,
+  menuItemSectionSchema,
 } from "@/domain/content/schemas";
 import type {
-  AlaCarteSection,
   BuffetBenefit,
   BuffetGalleryItem,
   BuffetPricing,
   DinnerPackage,
-  DrinkCategory,
-  MenuCategory,
   MenuItem,
-  Review,
-  SushiSection,
+  MenuSetCategoryData,
+  MenuItemSectionData,
 } from "@/domain/content/types";
 
-const menuCategories = menuCategorySchema
-  .array()
-  .parse(menuCategoriesData)
-  .sort((a, b) => a.displayOrder - b.displayOrder);
-const menuItems = menuItemSchema.array().parse(menuItemsData);
+const menuContent = menuContentSchema.parse(menuItemsData);
+const menuSetCategories = menuContent.setCategories;
+const menuItems = menuItemSchema.array().parse(menuContent.items);
 const buffetPricing = buffetPricingSchema.parse(buffetData);
 const dinnerPackages = dinnerPackageSchema.array().parse(dinnerPackagesData);
-const alacarteSections = alacarteSectionSchema
-  .array()
-  .parse(alacarteSectionsData);
-const sushiSections = sushiSectionSchema.array().parse(sushiSectionsData);
-const drinkCategories = drinkCategorySchema.array().parse(drinkCategoriesData);
+const menuItemSections = menuItemSectionSchema.array().parse(menuContent.sections);
 const buffetBenefits = buffetBenefitSchema.array().parse(buffetBenefitsData);
 const buffetGallery = buffetGalleryItemSchema.array().parse(buffetGalleryData);
-const reviews = reviewSchema.array().parse(reviewsData);
 
-export function listMenuCategories(): MenuCategory[] {
-  return menuCategories;
-}
+export const listMenuItems = (): MenuItem[] => menuItems;
 
-export function listMenuItems(): MenuItem[] {
-  return menuItems;
-}
+export const listMenuSetCategories = (): MenuSetCategoryData[] => menuSetCategories;
 
-export function listMenuItemsByCategory(categoryId: string): MenuItem[] {
-  return menuItems.filter((item) => item.categoryId === categoryId);
-}
+export const listMenuItemsByCategory = (categoryId: string): MenuItem[] =>
+  menuItems.filter((item) => item.categoryId === categoryId);
 
-export function getBuffetPricing(): BuffetPricing {
-  return buffetPricing;
-}
+export const getBuffetPricing = (): BuffetPricing => buffetPricing;
 
-export function listDinnerPackages(): DinnerPackage[] {
-  return dinnerPackages;
-}
+export const listDinnerPackages = (): DinnerPackage[] => dinnerPackages;
 
-export function listAlaCarteSections(): AlaCarteSection[] {
-  return alacarteSections;
-}
+export const listMenuItemSections = (): MenuItemSectionData[] => menuItemSections;
 
-export function listSushiSections(): SushiSection[] {
-  return sushiSections;
-}
+export const listBuffetBenefits = (): BuffetBenefit[] => buffetBenefits;
 
-export function listDrinkCategories(): DrinkCategory[] {
-  return drinkCategories;
-}
-
-export function listBuffetBenefits(): BuffetBenefit[] {
-  return buffetBenefits;
-}
-
-export function listBuffetGallery(): BuffetGalleryItem[] {
-  return buffetGallery;
-}
-
-export function listReviews(): Review[] {
-  return reviews;
-}
+export const listBuffetGallery = (): BuffetGalleryItem[] => buffetGallery;
