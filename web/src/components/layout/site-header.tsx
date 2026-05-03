@@ -12,6 +12,18 @@ const headerLinks = [
   { label: "Kontakt", href: "/#contact" },
 ];
 
+function isHeaderLinkActive(href: string, pathname: string, hash: string) {
+  if (href === "/") {
+    return pathname === "/" && hash !== "#contact";
+  }
+
+  if (href === "/#contact") {
+    return pathname === "/" && hash === "#contact";
+  }
+
+  return pathname === href;
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
   const [hash, setHash] = useState("");
@@ -42,14 +54,7 @@ export function SiteHeader() {
         <nav className="hidden md:block">
           <ul className="flex items-center gap-8">
             {headerLinks.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/" && hash !== "#contact"
-                  : item.href === "/menu"
-                    ? pathname === "/menu"
-                  : item.href === "/#contact"
-                    ? pathname === "/" && hash === "#contact"
-                    : pathname === item.href;
+              const isActive = isHeaderLinkActive(item.href, pathname, hash);
 
               return (
                 <li key={item.href}>
@@ -73,7 +78,6 @@ export function SiteHeader() {
           aria-hidden="true"
           className="hidden h-10 w-[148px] shrink-0 md:block"
         />
-
       </div>
     </header>
   );

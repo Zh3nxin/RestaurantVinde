@@ -1,31 +1,5 @@
 import Link from "next/link";
-
-type ContactDetails = {
-  name: string;
-  address: {
-    line1: string;
-    line2: string;
-  };
-  map: {
-    googleMapsUrl: string;
-  };
-  phoneNumbers: string[];
-  email: string;
-};
-
-type OpeningHours = {
-  regular: Array<{
-    days: string;
-    open: string;
-    close: string;
-  }>;
-  takeaway: Array<{
-    label: string;
-    open: string;
-    close: string;
-  }>;
-  notes: string[];
-};
+import type { ContactDetails, OpeningHours } from "@/domain/content/types";
 
 type HomeContactSectionProps = {
   contact: ContactDetails;
@@ -77,16 +51,18 @@ export function HomeContactSection({
                     key={slot.label}
                     className="flex items-center justify-between pt-1"
                   >
-                    <span>Take-away alle dage</span>
+                    <span>{slot.label}</span>
                     <span className="text-sm font-bold uppercase tracking-[0.08em] text-[var(--primary)]">
                       {slot.open} - {slot.close}
                     </span>
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 text-[10px] italic text-[color:rgba(90,64,60,0.7)]">
-                ({hours.notes[0]})
-              </p>
+              {hours.notes[0] ? (
+                <p className="mt-4 text-[10px] italic text-[color:rgba(90,64,60,0.7)]">
+                  ({hours.notes[0]})
+                </p>
+              ) : null}
             </div>
 
             <div className="rounded-[var(--radius-xl)] border border-[color:rgba(227,190,184,0.14)] bg-[var(--background)] p-8 shadow-[0_8px_20px_rgba(30,27,19,0.05)]">
@@ -137,30 +113,6 @@ function ScheduleIcon() {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={iconClassName()}>
       <circle cx="12" cy="12" r="8" strokeWidth="1.8" />
       <path d="M12 7.5v5l3.5 2" strokeWidth="1.8" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function LocationIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={iconClassName()}>
-      <path
-        d="M12 20s6-4.7 6-10a6 6 0 1 0-12 0c0 5.3 6 10 6 10Z"
-        strokeWidth="1.8"
-      />
-      <circle cx="12" cy="10" r="2.2" strokeWidth="1.8" />
-    </svg>
-  );
-}
-
-function MapPinIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={iconClassName()}>
-      <path
-        d="M12 20s6-4.7 6-10a6 6 0 1 0-12 0c0 5.3 6 10 6 10Z"
-        strokeWidth="1.8"
-      />
-      <circle cx="12" cy="10" r="2.2" strokeWidth="1.8" />
     </svg>
   );
 }
