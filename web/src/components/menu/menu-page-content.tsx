@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import {
   MenuItemSection,
   MenuPageNavigation,
@@ -18,13 +17,9 @@ export function MenuPageContent({
   priceMode?: PriceMode;
 }) {
   const menuSetCategories = listMenuSetCategories();
-  const menuItems = filterMenuItemsByPriceMode(listMenuItems(), priceMode);
-  const menuItemSections = filterMenuItemSectionsByPriceMode(
-    listMenuItemSections(),
-    priceMode
-  );
+  const { menuItems, menuItemSections } = getVisibleMenuData(priceMode);
 
-  const setSectionDefinitions = menuSetCategories
+  const menuSetSections = menuSetCategories
     .map((category, index) => ({
       id: category.id,
       label: category.title,
@@ -33,23 +28,26 @@ export function MenuPageContent({
     }))
     .filter((section) => section.items.length > 0);
 
-  const itemSectionDefinitions = menuItemSections.map((section, index) => ({
+  const menuItemDisplaySections = menuItemSections.map((section, index) => ({
     id: section.id,
     label: section.title,
-    tone: getSectionTone(index + setSectionDefinitions.length),
+    tone: getSectionTone(index + menuSetSections.length),
     groups: section.groups,
   }));
 
-  const sections: Array<{
-    id: string;
-    label: string;
-    content: ReactNode;
-  }> = [
-    ...setSectionDefinitions.map((section) => ({
-      id: section.id,
-      label: section.label,
-      content: (
+  const sectionLinks = [...menuSetSections, ...menuItemDisplaySections].map(
+    ({ id, label }) => ({
+      id,
+      label,
+    })
+  );
+
+  return (
+    <div className="bg-[var(--background)]">
+      <MenuPageNavigation links={sectionLinks} />
+      {menuSetSections.map((section) => (
         <MenuSetSection
+          key={section.id}
           id={section.id}
           title={section.label}
           tone={section.tone}
@@ -64,68 +62,43 @@ export function MenuPageContent({
             })),
           }))}
         />
-      ),
-    })),
-    ...itemSectionDefinitions.map((section) => ({
-      id: section.id,
-      label: section.label,
-      content: (
+      ))}
+      {menuItemDisplaySections.map((section) => (
         <MenuItemSection
+          key={section.id}
           id={section.id}
           title={section.label}
           tone={section.tone}
           groups={section.groups}
           priceMode={priceMode}
         />
-      ),
-    })),
-  ];
-
-  return (
-    <div className="bg-[var(--background)]">
-      <MenuPageNavigation
-        links={sections.map((section) => ({
-          id: section.id,
-          label: section.label,
-        }))}
-      />
-      {sections.map((section) => (
-        <div key={section.id}>{section.content}</div>
       ))}
     </div>
   );
 }
 
-function filterMenuItemsByPriceMode(
-  menuItems: ReturnType<typeof listMenuItems>,
-  priceMode: PriceMode
-) {
+function getVisibleMenuData(priceMode: PriceMode) {
+  const menuItems = listMenuItems();
+  const menuItemSections = listMenuItemSections();
+
   if (priceMode === "dine-in") {
-    return menuItems;
+    return { menuItems, menuItemSections };
   }
 
-  return menuItems.filter((item) => item.takeawayPrice != null);
-}
-
-function filterMenuItemSectionsByPriceMode(
-  menuItemSections: ReturnType<typeof listMenuItemSections>,
-  priceMode: PriceMode
-) {
-  if (priceMode === "dine-in") {
-    return menuItemSections;
-  }
-
-  return menuItemSections
-    .map((section) => ({
-      ...section,
-      groups: section.groups
-        .map((group) => ({
-          ...group,
-          items: group.items.filter((item) => item.takeawayPrice != null),
-        }))
-        .filter((group) => group.items.length > 0),
-    }))
-    .filter((section) => section.groups.length > 0);
+  return {
+    menuItems: menuItems.filter((item) => item.takeawayPrice != null),
+    menuItemSections: menuItemSections
+      .map((section) => ({
+        ...section,
+        groups: section.groups
+          .map((group) => ({
+            ...group,
+            items: group.items.filter((item) => item.takeawayPrice != null),
+          }))
+          .filter((group) => group.items.length > 0),
+      }))
+      .filter((section) => section.groups.length > 0),
+  };
 }
 
 function getSectionTone(index: number) {
