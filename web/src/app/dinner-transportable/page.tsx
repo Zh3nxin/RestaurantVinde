@@ -1,3 +1,4 @@
+import { PageIntroSection } from "@/components/sections/page-intro-section";
 import { PageSection } from "@/components/sections/page-section";
 import { listDinnerPackages } from "@/data/menu";
 import { formatPrice } from "@/lib/format";
@@ -7,36 +8,23 @@ export default function DinnerTransportablePage() {
 
   return (
     <div className="bg-[var(--background)]">
-      <PageSection tone="surface">
-        <header className="text-center">
-          <h1 className="font-display text-5xl tracking-[-0.03em] text-[var(--primary)]">
-            Dinner Transportable
-          </h1>
-          <div className="mx-auto mt-6 max-w-2xl">
-            <p className="text-lg leading-relaxed text-[var(--foreground-muted)]">
-              Skal du holde arrangement hjemme, på arbejdspladsen eller til
-              fest, tilbyder vi Dinner Transportable. Vi hjælper gerne med en
-              løsning, der passer til jeres behov.
-            </p>
-            <p className="mt-4 text-sm italic text-[var(--foreground-muted)]">
-              Bestilles til minimum antal personer. Kontakt os gerne for
-              spørgsmål eller særlige ønsker.
-            </p>
-          </div>
-        </header>
-      </PageSection>
+      <PageIntroSection
+        title="Dinner Transportable"
+        description="Skal du holde arrangement hjemme, på arbejdspladsen eller til fest, tilbyder vi Dinner Transportable. Vi hjælper gerne med en løsning, der passer til jeres behov."
+        note="Bestilles til minimum antal personer. Kontakt os gerne for spørgsmål eller særlige ønsker."
+      />
 
       <div className="space-y-0">
         {packages.map((pkg, index) => (
           <DinnerPackageSection
             key={pkg.id}
-            title={pkg.name}
+            title={formatDinnerPackageTitle(pkg.name)}
             description={pkg.description}
             price={pkg.takeawayPrice ?? pkg.dineInPrice ?? null}
             minBuy={pkg.minGuests ?? null}
             items={pkg.items}
             sushiItems={pkg.sushi}
-            tone={index % 2 === 0 ? "low" : "surface"}
+            tone={index % 2 === 0 ? "surface" : "low"}
           />
         ))}
       </div>
@@ -65,7 +53,7 @@ function DinnerPackageSection({
     <PageSection tone={tone} spacing="compact">
       <div className="mb-8 flex items-baseline justify-between gap-6">
         <div>
-          <h2 className="font-display text-3xl font-bold text-[var(--primary)]">
+          <h2 className="font-display text-[1.9rem] leading-[1.08] tracking-[-0.02em] text-[var(--primary)] md:text-[2.3rem]">
             {title}
           </h2>
           {description ? (
@@ -116,4 +104,9 @@ function DinnerPackageSection({
       ) : null}
     </PageSection>
   );
+}
+
+function formatDinnerPackageTitle(title: string) {
+  const cleaned = title.replace(/^Dinner transportable\s+/i, "").trim();
+  return cleaned ? cleaned.charAt(0).toUpperCase() + cleaned.slice(1) : title;
 }

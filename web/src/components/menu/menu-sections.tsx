@@ -66,11 +66,11 @@ export function MenuSetSection({
               {eyebrow}
             </span>
           ) : null}
-          <h2 className="font-display text-5xl tracking-[-0.03em] text-[var(--primary)]">
+          <h2 className="font-display text-[1.9rem] leading-[1.08] tracking-[-0.02em] text-[var(--primary)] md:text-[2.3rem]">
             {title}
           </h2>
           {intro ? (
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[var(--foreground-muted)]">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[var(--foreground-muted)] md:text-lg">
               {intro}
             </p>
           ) : null}
@@ -136,12 +136,14 @@ export function MenuItemSection({
   return (
     <PageSection id={id} tone={tone}>
         <div className="mb-16 text-center">
-          <h2 className="font-display text-5xl tracking-[-0.03em] text-[var(--primary)]">
+          <h2 className="font-display text-[1.9rem] leading-[1.08] tracking-[-0.02em] text-[var(--primary)] md:text-[2.3rem]">
             {title}
             {subtitle ? (
               <>
                 <br />
-                <span className="text-3xl text-[var(--accent)]">{subtitle}</span>
+                <span className="mt-2 inline-block text-[1.35rem] text-[var(--accent)] md:text-[1.6rem]">
+                  {subtitle}
+                </span>
               </>
             ) : null}
           </h2>
@@ -207,7 +209,7 @@ function UnifiedListRow({
           </span>
         ) : null}
         <div>
-          <h3 className="font-display text-2xl text-[var(--foreground)] transition-colors hover:text-[var(--primary)]">
+          <h3 className="font-display text-[1.45rem] leading-tight text-[var(--foreground)] transition-colors hover:text-[var(--primary)] md:text-[1.65rem]">
             {title}
           </h3>
           {children}

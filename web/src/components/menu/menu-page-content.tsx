@@ -102,6 +102,6 @@ function getVisibleMenuData(priceMode: PriceMode) {
 }
 
 function getSectionTone(index: number) {
-  const tones = ["soft", "surface"] as const;
+  const tones = ["surface", "soft"] as const;
   return tones[index % tones.length];
 }

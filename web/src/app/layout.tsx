@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Manrope, Noto_Serif } from "next/font/google";
 import { SiteHeader } from "@/components/layout/site-header";
-import { getContactDetails } from "@/data/site";
+import { getContactDetails, getOpeningHours } from "@/data/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -27,6 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const contact = getContactDetails();
+  const hours = getOpeningHours();
   const primaryPhone = contact.phoneNumbers[0]?.replace(/\s+/g, "");
 
   return (
@@ -69,20 +70,19 @@ export default function RootLayout({
 
                 <div className="space-y-1">
                   <p className="mb-1 font-display text-sm uppercase tracking-[0.14em] text-white">
-                    Sider
+                    Åbningstider
                   </p>
-                  <Link
-                    href="/menu"
-                    className="block transition-colors hover:text-white"
-                  >
-                    Menu
-                  </Link>
-                  <Link
-                    href="/#contact"
-                    className="block transition-colors hover:text-white"
-                  >
-                    Kontakt
-                  </Link>
+                  {hours.regular.map((slot) => (
+                    <p key={slot.days}>
+                      {slot.days}: {slot.open} - {slot.close}
+                    </p>
+                  ))}
+                  {hours.takeaway[0] ? (
+                    <p>
+                      {hours.takeaway[0].label}: {hours.takeaway[0].open} -{" "}
+                      {hours.takeaway[0].close}
+                    </p>
+                  ) : null}
                 </div>
 
                 <div className="space-y-1 md:text-right">
