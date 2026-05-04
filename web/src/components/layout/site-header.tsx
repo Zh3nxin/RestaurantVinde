@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 const headerLinks = [
   { label: "Hjem", href: "/" },
   { label: "Menu", href: "/menu" },
-  { label: "Take Away", href: "/takeaway" },
+  { label: "Takeaway", href: "/takeaway" },
   { label: "Dinner Transportable", href: "/dinner-transportable" },
   { label: "Kontakt", href: "/#contact" },
 ];

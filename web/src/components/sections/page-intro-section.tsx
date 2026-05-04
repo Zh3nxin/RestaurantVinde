@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export function PageIntroSection({
   title,
   description,
@@ -6,7 +8,7 @@ export function PageIntroSection({
 }: {
   title: string;
   description: string;
-  note?: string;
+  note?: ReactNode;
   eyebrow?: string;
 }) {
   return (
