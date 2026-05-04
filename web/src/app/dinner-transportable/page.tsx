@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import { PageIntroSection } from "@/components/sections/page-intro-section";
 import { PageSection } from "@/components/sections/page-section";
 import { listDinnerPackages } from "@/data/menu";
 import { formatPrice } from "@/lib/format";
+import { createPageMetadata } from "@/lib/seo/metadata";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Dinner Transportable",
+  description:
+    "Bestil Dinner Transportable hos Restaurant Vinde, en kinesisk restaurant ved Hasle Torv i Aarhus V, til selskaber og buffet ud af huset.",
+  path: "/dinner-transportable",
+});
 
 export default function DinnerTransportablePage() {
   const packages = listDinnerPackages();

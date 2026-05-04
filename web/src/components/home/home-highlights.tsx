@@ -5,31 +5,29 @@ const highlights = [
   {
     title: "Sushi",
     description: "Nigiri – Inside-out – Maki",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuA8yOAXc968HzMeDg-_5REMinHaCPjmEkntatMHiKP3SjKjzm90uPHdmEjGKLLv5JNYBDmIj5F-rAsM7Lk2fkHM-pb2coIqTJyCVc35k9GsvrKh0L1PGCudhLRoke56bGd52E9A5gvQZB1ic_IoUYB-JzaJZCrobnZqhipwsQKqBzN8uXNzrD6v_b9DCG8AoWQHmrBJVNFk_Q3r0wy4tIUb7BFfCMKeP7gT8uZD8299KI9CuDN8afVkjTZGDeyiy0VnO8nTew4iwe2I",
+    image: "/images/sushi-preview3.png",
     background: "var(--surface-low)",
   },
   {
     title: "Hovedretter",
-    description: "26 forskellige varme retter med tilbehør",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAN0Zl4gH_SM-WczWLB4xRz9JGYRmaCW9xPxutfTebElGhGhGvpXQL7eVfN2AYrLy2yU_IcIKj8ommR2FLwCHIKpgiGz6sg5eahK0Xshb1fe4OxU_bnG8Iqnlks_xzaH_4FUlGPImu9iApuAUUUv_4HE7roYDFmoHUj0CnjCvyyFlWy4MXl9dWFZg398vCthY9sE06oaySG2rjvLtOwTe93w4umdolAAvB4i5tiDSzM9JNic-fwjjrgmJvBzNNYWGte2JUQ-l4KJh-w",
+    description: "26 forskellige varme kinesiske retter",
+    image: "/images/buffet-preview1.png",
     background: "var(--surface-soft)",
   },
   {
     title: "Mongolian Barbecue",
-    description: "4 forskellige slags kød, Forskellige sauce",
+    description: "4 forskellige slags kød, forskellige saucer",
     image:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuAFFBREOtO-8f2bWWjQ5Vz5YH52jWod8hZEZNa31attxo7s1Y9QNFVxnBTwOWve9bzAOycHJMNacnFPBGJD3GpAHpfnp4hss9lx4BXhf_3dqJ4jDE0YJiFjOXREnexOcLp46m9sfqADYAN4R57IFhw8BoM1V3R_TzXPV2ONyOOGV8MSBHOUtsBoJ8ziuiOEJpGd1vRqvd5X6w7QQtvKF1V3Lv4TbBglBHVah2d6_I4ixnq3UJVDkcqQgCP5CcUXCEcxBqxluhBUz8Qi",
     background: "var(--surface-strong)",
   },
   {
-    title: "Salatbar & Dessert",
-    description: "Fri is, kaffe og the og stor salatbar",
-    image: "/images/12.jpg",
+    title: "Dessert & Salatbar",
+    description: "Fri is, kaffe, te og stor salatbar",
+    image: "/images/dessert1.png",
     background: "var(--surface-low)",
   },
-];
+] as const;
 
 export function HomeHighlights() {
   return (
@@ -81,10 +79,13 @@ export function HomeHighlights() {
           </p>
           <Link
             href="/dinner-transportable"
-            className="mt-3 inline-block font-semibold transition-colors hover:underline hover:underline-offset-3"
+            className="group mt-4 inline-flex items-center gap-2 rounded-full border border-[color:rgba(130,34,34,0.18)] px-4 py-2 font-semibold transition-all duration-300 hover:border-[var(--primary)] hover:bg-[color:rgba(130,34,34,0.08)] hover:text-[var(--primary-strong)]"
             style={{ color: "var(--primary)" }}
           >
-            Læs mere om Dinner Transportable →
+            <span>Læs mere om Dinner Transportable</span>
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
           </Link>
         </div>
       </div>

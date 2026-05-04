@@ -21,15 +21,9 @@ export function HomeContactSection({
       className="border-t border-[color:rgba(227,190,184,0.1)] bg-[var(--surface-low)] py-16"
     >
       <div className="mx-auto max-w-screen-2xl px-6 lg:px-12">
-        <div className="mb-12">
-          <h2 className="text-center font-display text-4xl italic tracking-[-0.03em] text-[var(--primary)] md:text-left">
-            Åbningstider & Kontakt
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
-          <div className="flex flex-col gap-8">
-            <div className="rounded-[var(--radius-xl)] border border-[color:rgba(227,190,184,0.14)] bg-[var(--background)] p-8 shadow-[0_8px_20px_rgba(30,27,19,0.05)]">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-stretch">
+          <div className="flex h-full flex-col overflow-hidden rounded-[var(--radius-xl)] border border-[color:rgba(227,190,184,0.14)] bg-[var(--background)] shadow-[0_8px_20px_rgba(30,27,19,0.05)]">
+            <div className="flex-1 p-8">
               <h3 className="mb-6 flex items-center gap-3 font-display text-2xl font-bold text-[var(--primary)]">
                 <ScheduleIcon />
                 Åbningstider
@@ -65,7 +59,7 @@ export function HomeContactSection({
               ) : null}
             </div>
 
-            <div className="rounded-[var(--radius-xl)] border border-[color:rgba(227,190,184,0.14)] bg-[var(--background)] p-8 shadow-[0_8px_20px_rgba(30,27,19,0.05)]">
+            <div className="border-t border-[color:rgba(227,190,184,0.14)] p-8">
               <h3 className="mb-6 flex items-center gap-3 font-display text-2xl font-bold text-[var(--primary)]">
                 <PhoneIcon />
                 Kontakt
@@ -84,11 +78,20 @@ export function HomeContactSection({
                     Email: {contact.email}
                   </Link>
                 </p>
+                <p className="flex items-start gap-3">
+                  <LocationIcon />
+                  <span>
+                    {contact.address.line1}, {contact.address.line2}
+                    <span className="mt-1 block text-sm text-[color:rgba(90,64,60,0.78)]">
+                      Restauranten ligger mellem Coop365 og Lidl ved Hasle Torv
+                    </span>
+                  </span>
+                </p>
               </address>
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[var(--radius-xl)] bg-[var(--background)] shadow-[0_8px_20px_rgba(30,27,19,0.06)]">
+          <div className="h-full overflow-hidden rounded-[var(--radius-xl)] bg-[var(--background)] shadow-[0_8px_20px_rgba(30,27,19,0.06)]">
             <iframe
               className="h-full min-h-[500px] w-full border-0"
               src={mapEmbedSrc}
@@ -144,6 +147,19 @@ function MailIcon() {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={iconClassName()}>
       <rect x="4" y="6.5" width="16" height="11" rx="1.5" strokeWidth="1.8" />
       <path d="m5 8 7 5 7-5" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function LocationIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={iconClassName()}>
+      <path
+        d="M12 20s6-5.4 6-10a6 6 0 1 0-12 0c0 4.6 6 10 6 10Z"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="10" r="2.2" strokeWidth="1.8" />
     </svg>
   );
 }

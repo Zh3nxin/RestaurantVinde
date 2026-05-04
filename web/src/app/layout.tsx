@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Manrope, Noto_Serif } from "next/font/google";
 import { SiteHeader } from "@/components/layout/site-header";
 import { getContactDetails, getOpeningHours } from "@/data/site";
+import { siteConfig } from "@/lib/seo/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -17,8 +18,35 @@ const notoSerif = Noto_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Restaurant Vinde",
-  description: "Buffet og sushi i Aarhus V – oplev Restaurant Vinde.",
+  metadataBase: new URL(siteConfig.siteUrl),
+  title: {
+    default: siteConfig.defaultTitle,
+    template: siteConfig.titleTemplate,
+  },
+  description: siteConfig.defaultDescription,
+  applicationName: siteConfig.name,
+  alternates: {
+    canonical: siteConfig.basePath || "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale,
+    siteName: siteConfig.name,
+    title: siteConfig.defaultTitle,
+    description: siteConfig.defaultDescription,
+    url: siteConfig.basePath || "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({

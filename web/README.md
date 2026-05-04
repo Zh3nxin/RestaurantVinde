@@ -15,12 +15,14 @@ The site is served on [http://localhost:3000](http://localhost:3000).
 Create `web/.env.local` with the following variables:
 
 ```
+NEXT_PUBLIC_SITE_URL=https://restaurant-vinde.vercel.app
 NEXT_PUBLIC_GOOGLE_MAPS_EMBED_API_KEY=your-google-maps-embed-api-key
 # Only set when building for a subfolder like /test
 NEXT_BASE_PATH=/test
 ```
 
 - Enable the Google Maps Embed API in Google Cloud Console to obtain a key.
+- `NEXT_PUBLIC_SITE_URL` sets the canonical site URL used for SEO metadata, sitemap, robots, and structured data. Change this when the production domain changes.
 - `NEXT_BASE_PATH` is optional for local development, but set it to `/test` before running `npm run build` when you plan to deploy to `test.restaurantvinde.dk`. Leave it unset for local dev (site will be served from `/`).
 
 Never commit your `.env.local`.
