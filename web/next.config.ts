@@ -5,6 +5,7 @@ const prefix = basePath || undefined;
 
 const nextConfig: NextConfig = {
   output: "export",
+  trailingSlash: true,
   basePath: prefix,
   assetPrefix: prefix,
   images: {
