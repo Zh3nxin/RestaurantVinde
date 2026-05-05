@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MenuPageContent } from "@/components/menu/menu-page-content";
+import { getMenuPageSectionLinks } from "@/components/menu/menu-page-content";
+import { MobileSectionPicker } from "@/components/sections/mobile-section-picker";
 import { PageIntroSection } from "@/components/sections/page-intro-section";
 import { createPageMetadata } from "@/lib/seo/metadata";
 
@@ -12,6 +14,8 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function MenuPage() {
+  const sectionLinks = getMenuPageSectionLinks();
+
   return (
     <>
       <PageIntroSection
@@ -28,6 +32,11 @@ export default function MenuPage() {
             </Link>
           </>
         }
+      />
+      <MobileSectionPicker
+        links={sectionLinks}
+        pickerLabel="Menu"
+        title="Vælg sektion"
       />
       <MenuPageContent />
     </>

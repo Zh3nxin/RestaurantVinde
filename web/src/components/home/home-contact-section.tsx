@@ -1,13 +1,11 @@
 import Link from "next/link";
+/* eslint-disable @next/next/no-img-element */
 import type { ContactDetails, OpeningHours } from "@/domain/content/types";
 
 type HomeContactSectionProps = {
   contact: ContactDetails;
   hours: OpeningHours;
 };
-
-const mapEmbedSrc =
-  "https://maps.google.com/?cid=4025487187792771437&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA&hl=en&gl=DK&source=embed&output=embed";
 
 export function HomeContactSection({
   contact,
@@ -21,21 +19,21 @@ export function HomeContactSection({
       className="border-t border-[color:rgba(227,190,184,0.1)] bg-[var(--surface-low)] py-16"
     >
       <div className="mx-auto max-w-screen-2xl px-6 lg:px-12">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-stretch">
-          <div className="flex h-full flex-col overflow-hidden rounded-[var(--radius-xl)] border border-[color:rgba(227,190,184,0.14)] bg-[var(--background)] shadow-[0_8px_20px_rgba(30,27,19,0.05)]">
-            <div className="flex-1 p-8">
-              <h3 className="mb-6 flex items-center gap-3 font-display text-2xl font-bold text-[var(--primary)]">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
+          <div className="flex flex-col overflow-hidden rounded-[var(--radius-xl)] border border-[color:rgba(227,190,184,0.14)] bg-[var(--background)] shadow-[0_8px_20px_rgba(30,27,19,0.05)]">
+            <div className="p-6">
+              <h3 className="mb-5 flex items-center gap-3 font-display text-2xl font-bold text-[var(--primary)]">
                 <ScheduleIcon />
                 Åbningstider
               </h3>
-              <ul className="space-y-4 text-[var(--foreground-muted)]">
+              <ul className="space-y-2.5 text-[var(--foreground-muted)]">
                 {hours.regular.map((slot) => (
                   <li
                     key={slot.days}
-                    className="flex items-center justify-between border-b border-[color:rgba(227,190,184,0.15)] pb-2"
+                    className="flex items-center justify-between gap-4 border-b border-[color:rgba(227,190,184,0.15)] pb-2"
                   >
                     <span>{slot.days}</span>
-                    <span className="text-sm font-bold uppercase tracking-[0.08em] text-[var(--primary)]">
+                    <span className="whitespace-nowrap text-sm font-bold uppercase tracking-[0.08em] text-[var(--primary)]">
                       {slot.open} - {slot.close}
                     </span>
                   </li>
@@ -43,28 +41,28 @@ export function HomeContactSection({
                 {hours.takeaway.map((slot) => (
                   <li
                     key={slot.label}
-                    className="flex items-center justify-between pt-1"
+                    className="flex items-center justify-between gap-4 pt-1"
                   >
                     <span>{slot.label}</span>
-                    <span className="text-sm font-bold uppercase tracking-[0.08em] text-[var(--primary)]">
+                    <span className="whitespace-nowrap text-sm font-bold uppercase tracking-[0.08em] text-[var(--primary)]">
                       {slot.open} - {slot.close}
                     </span>
                   </li>
                 ))}
               </ul>
               {hours.notes[0] ? (
-                <p className="mt-4 text-[10px] italic text-[color:rgba(90,64,60,0.7)]">
+                <p className="mt-2 text-[10px] italic text-[color:rgba(90,64,60,0.7)]">
                   ({hours.notes[0]})
                 </p>
               ) : null}
             </div>
 
-            <div className="border-t border-[color:rgba(227,190,184,0.14)] p-8">
-              <h3 className="mb-6 flex items-center gap-3 font-display text-2xl font-bold text-[var(--primary)]">
+            <div className="border-t border-[color:rgba(227,190,184,0.14)] p-6">
+              <h3 className="mb-5 flex items-center gap-3 font-display text-2xl font-bold text-[var(--primary)]">
                 <PhoneIcon />
                 Kontakt
               </h3>
-              <address className="space-y-4 not-italic text-[var(--foreground-muted)]">
+              <address className="space-y-2.5 not-italic text-[var(--foreground-muted)]">
                 <p className="flex items-center gap-3">
                   <MobileIcon />
                   <span>Telefon: {primaryPhone}</span>
@@ -91,15 +89,24 @@ export function HomeContactSection({
             </div>
           </div>
 
-          <div className="h-full overflow-hidden rounded-[var(--radius-xl)] bg-[var(--background)] shadow-[0_8px_20px_rgba(30,27,19,0.06)]">
-            <iframe
-              className="h-full min-h-[500px] w-full border-0"
-              src={mapEmbedSrc}
-              loading="lazy"
-              allowFullScreen
-              referrerPolicy="no-referrer-when-downgrade"
-              title={`Kort over ${contact.name}`}
+          <div className="relative min-h-[320px] overflow-hidden rounded-[var(--radius-xl)] bg-[var(--background)] shadow-[0_8px_20px_rgba(30,27,19,0.06)] lg:h-full lg:min-h-0 lg:self-stretch">
+            <img
+              className="absolute inset-0 block h-full w-full object-cover object-center"
+              src={contact.map.staticImage || "/images/map.png"}
+              alt={`Kortplacering for ${contact.name}`}
             />
+
+            <div className="absolute left-6 top-6">
+              <Link
+                href={contact.map.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 rounded-[var(--radius-xl)] bg-white px-5 py-4 text-[1.05rem] font-semibold text-[#1a73e8] shadow-[0_10px_22px_rgba(30,27,19,0.16)] transition-transform hover:-translate-y-0.5"
+              >
+                <span>Åbn i Google Maps</span>
+                <OpenInMapsIcon />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -160,6 +167,27 @@ function LocationIcon() {
         strokeLinejoin="round"
       />
       <circle cx="12" cy="10" r="2.2" strokeWidth="1.8" />
+    </svg>
+  );
+}
+
+function OpenInMapsIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      className="h-6 w-6"
+    >
+      <path d="M14 5h5v5" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10 14 19 5" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M19 13v5a1 1 0 0 1-1 1h-12a1 1 0 0 1-1-1v-12a1 1 0 0 1 1-1h5"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }

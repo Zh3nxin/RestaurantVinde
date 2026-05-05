@@ -9,27 +9,7 @@ export type SectionLink = {
 
 export function MenuPageNavigation({ links }: { links: SectionLink[] }) {
   return (
-    <>
-      <MenuSectionRail links={links} />
-
-      <nav className="sticky top-20 z-30 border-b border-[color:rgba(227,190,184,0.2)] bg-[color:rgba(255,248,239,0.82)] backdrop-blur-xl xl:hidden">
-        <div className="mx-auto flex w-full max-w-screen-xl gap-8 overflow-x-auto px-8 py-4 text-[13px] uppercase tracking-[0.18em] lg:justify-center">
-          {links.map((link, index) => (
-            <a
-              key={link.id}
-              href={`#${link.id}`}
-              className={`whitespace-nowrap transition-colors hover:text-[var(--primary)] ${
-                index === 0
-                  ? "border-b-2 border-[var(--primary-strong)] font-bold text-[var(--primary-strong)]"
-                  : "text-[color:rgba(90,64,60,0.85)]"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-      </nav>
-    </>
+    <MenuSectionRail links={links} />
   );
 }
 
@@ -153,7 +133,7 @@ export function MenuItemSection({
           {groups.map((group, groupIndex) => (
             <div key={group.title ?? `group-${groupIndex}`}>
               {group.title ? (
-                <div className="mb-8 inline-block bg-[var(--surface-soft)] px-6 py-3">
+                <div className="mb-2 inline-block py-3">
                   <h3 className="text-sm uppercase tracking-[0.18em] text-[var(--accent)]">
                     {group.title}
                   </h3>
@@ -209,7 +189,7 @@ function UnifiedListRow({
           </span>
         ) : null}
         <div>
-          <h3 className="font-display text-[1.45rem] leading-tight text-[var(--foreground)] transition-colors hover:text-[var(--primary)] md:text-[1.65rem]">
+          <h3 className="font-display text-[1.2rem] leading-tight text-[var(--foreground)] transition-colors hover:text-[var(--primary)]">
             {title}
           </h3>
           {children}

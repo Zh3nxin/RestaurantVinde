@@ -69,7 +69,7 @@ export function SiteHeader() {
           VINDE
         </Link>
 
-        <nav className="hidden md:block">
+        <nav className="hidden lg:block">
           <ul className="flex items-center gap-8">
             {headerLinks.map((item) => {
               const isActive = isHeaderLinkActive(item.href, pathname, hash);
@@ -94,7 +94,7 @@ export function SiteHeader() {
 
         <div
           aria-hidden="true"
-          className="hidden h-10 w-[148px] shrink-0 md:block"
+          className="hidden h-10 w-[148px] shrink-0 lg:block"
         />
 
         <button
@@ -102,7 +102,7 @@ export function SiteHeader() {
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-site-menu"
           aria-label={isMobileMenuOpen ? "Luk navigation" : "Åbn navigation"}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[color:rgba(255,248,239,0.18)] text-[var(--background)] transition-colors hover:bg-[color:rgba(255,255,255,0.08)] md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[color:rgba(255,248,239,0.18)] text-[var(--background)] transition-colors hover:bg-[color:rgba(255,255,255,0.08)] lg:hidden"
           onClick={() => {
             setIsMobileMenuOpen((open) => !open);
           }}
@@ -113,13 +113,13 @@ export function SiteHeader() {
 
       <div
         id="mobile-site-menu"
-        className={`absolute inset-x-0 top-full border-t border-[color:rgba(255,248,239,0.12)] bg-[var(--primary-strong)] transition-all duration-300 md:hidden ${
+        className={`absolute inset-x-0 top-full border-t border-[color:rgba(255,248,239,0.12)] bg-[var(--primary-strong)] transition-all duration-300 lg:hidden ${
           isMobileMenuOpen
             ? "pointer-events-auto visible opacity-100"
             : "pointer-events-none invisible opacity-0"
         }`}
       >
-        <nav className="mx-auto max-w-screen-2xl px-6 pb-6 pt-4">
+        <nav className="mx-auto max-w-screen-2xl pb-6 pt-4">
           <ul className="flex flex-col">
             {headerLinks.map((item) => {
               const isActive = isHeaderLinkActive(item.href, pathname, hash);
@@ -128,21 +128,13 @@ export function SiteHeader() {
                 <li key={item.href} className="border-b border-[color:rgba(255,248,239,0.1)] last:border-b-0">
                   <Link
                     href={item.href}
-                    className={`flex min-h-14 items-center justify-between py-3 text-sm font-semibold uppercase tracking-[0.16em] transition-colors ${
+                    className={`flex min-h-14 items-center px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] transition-colors ${
                       isActive
-                        ? "text-white"
+                        ? "bg-[var(--background)] !text-[var(--primary-strong)]"
                         : "text-[color:rgba(255,248,239,0.76)]"
                     }`}
                   >
                     <span>{item.label}</span>
-                    <span
-                      aria-hidden="true"
-                      className={`text-lg transition-transform ${
-                        isActive ? "translate-x-0 text-white" : "text-[color:rgba(255,248,239,0.38)]"
-                      }`}
-                    >
-                      →
-                    </span>
                   </Link>
                 </li>
               );

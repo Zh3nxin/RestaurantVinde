@@ -3,6 +3,7 @@ import {
   MenuPageNavigation,
   MenuSetSection,
 } from "@/components/menu/menu-sections";
+import type { SectionPickerLink } from "@/components/sections/mobile-section-picker";
 import {
   listMenuItemSections,
   listMenuItems,
@@ -16,31 +17,8 @@ export function MenuPageContent({
 }: {
   priceMode?: PriceMode;
 }) {
-  const menuSetCategories = listMenuSetCategories();
-  const { menuItems, menuItemSections } = getVisibleMenuData(priceMode);
-
-  const menuSetSections = menuSetCategories
-    .map((category, index) => ({
-      id: category.id,
-      label: category.title,
-      tone: getSectionTone(index),
-      items: menuItems.filter((item) => item.categoryId === category.id),
-    }))
-    .filter((section) => section.items.length > 0);
-
-  const menuItemDisplaySections = menuItemSections.map((section, index) => ({
-    id: section.id,
-    label: section.title,
-    tone: getSectionTone(index + menuSetSections.length),
-    groups: section.groups,
-  }));
-
-  const sectionLinks = [...menuSetSections, ...menuItemDisplaySections].map(
-    ({ id, label }) => ({
-      id,
-      label,
-    })
-  );
+  const { menuItemDisplaySections, menuSetSections, sectionLinks } =
+    getMenuPageSections(priceMode);
 
   return (
     <div className="bg-[var(--background)]">
@@ -77,6 +55,12 @@ export function MenuPageContent({
   );
 }
 
+export function getMenuPageSectionLinks(
+  priceMode: PriceMode = "dine-in"
+): SectionPickerLink[] {
+  return getMenuPageSections(priceMode).sectionLinks;
+}
+
 function getVisibleMenuData(priceMode: PriceMode) {
   const menuItems = listMenuItems();
   const menuItemSections = listMenuItemSections();
@@ -98,6 +82,40 @@ function getVisibleMenuData(priceMode: PriceMode) {
           .filter((group) => group.items.length > 0),
       }))
       .filter((section) => section.groups.length > 0),
+  };
+}
+
+function getMenuPageSections(priceMode: PriceMode) {
+  const menuSetCategories = listMenuSetCategories();
+  const { menuItems, menuItemSections } = getVisibleMenuData(priceMode);
+
+  const menuSetSections = menuSetCategories
+    .map((category, index) => ({
+      id: category.id,
+      label: category.title,
+      tone: getSectionTone(index),
+      items: menuItems.filter((item) => item.categoryId === category.id),
+    }))
+    .filter((section) => section.items.length > 0);
+
+  const menuItemDisplaySections = menuItemSections.map((section, index) => ({
+    id: section.id,
+    label: section.title,
+    tone: getSectionTone(index + menuSetSections.length),
+    groups: section.groups,
+  }));
+
+  const sectionLinks = [...menuSetSections, ...menuItemDisplaySections].map(
+    ({ id, label }) => ({
+      id,
+      label,
+    })
+  );
+
+  return {
+    menuItemDisplaySections,
+    menuSetSections,
+    sectionLinks,
   };
 }
 

@@ -29,18 +29,18 @@ export function HomeHero({
       </div>
 
       <div className="relative z-10 mx-auto grid w-full max-w-screen-2xl gap-6 px-6 pb-16 pt-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-8 lg:px-12 lg:py-16">
-        <div className="max-w-[42rem] self-center text-center md:text-left">
+        <div className="max-w-[42rem] self-center text-center lg:text-left">
           <p className="mb-4 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[var(--primary)]">
             Velkommen til
           </p>
-          <h1 className="mx-auto max-w-[14ch] font-display text-[2.9rem] font-black leading-[1.02] tracking-[-0.04em] text-[var(--primary)] md:mx-0 md:text-[4.6rem]">
+          <h1 className="mx-auto max-w-[14ch] font-display text-[2.9rem] font-black leading-[1.02] tracking-[-0.04em] text-[var(--primary)] lg:mx-0 lg:text-[4.6rem]">
             Kinesisk buffet i Aarhus V
           </h1>
 
-          <div className="mt-10 flex justify-center gap-4 md:mt-24 md:justify-start">
+          <div className="mt-10 flex justify-center gap-4 lg:mt-24 lg:justify-start">
             <Link
               href={bookHref}
-              className="inline-flex w-full items-center justify-center rounded-[var(--radius-xl)] bg-[var(--primary)] px-8 py-4 text-center text-[12px] font-extrabold uppercase tracking-[0.18em] shadow-[0_24px_40px_rgba(97,0,0,0.14)] transition-colors hover:bg-[var(--primary-strong)] md:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-[var(--radius-xl)] bg-[var(--primary)] px-8 py-4 text-center text-[12px] font-extrabold uppercase tracking-[0.18em] shadow-[0_24px_40px_rgba(97,0,0,0.14)] transition-colors hover:bg-[var(--primary-strong)] lg:w-auto"
               style={{ color: "#ffffff" }}
             >
               Reserver Bord Nu

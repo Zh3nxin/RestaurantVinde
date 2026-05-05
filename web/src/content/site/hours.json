@@ -13,13 +13,12 @@
   ],
   "takeaway": [
     {
-      "label": "Just-Eat afhentning alle dage",
+      "label": "Take-away afhentning alle dage",
       "open": "16:00",
       "close": "21:00"
     }
   ],
   "notes": [
-    "Køkkenet lukker kl. 21:30",
-    "Ring ved særlige åbningstider og helligdage"
+    "Køkkenet lukker kl. 21:30"
   ]
 }

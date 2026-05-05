@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MenuPageContent } from "@/components/menu/menu-page-content";
+import {
+  getMenuPageSectionLinks,
+  MenuPageContent,
+} from "@/components/menu/menu-page-content";
+import { MobileSectionPicker } from "@/components/sections/mobile-section-picker";
 import { PageIntroSection } from "@/components/sections/page-intro-section";
 import { createPageMetadata } from "@/lib/seo/metadata";
 
@@ -12,6 +16,8 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function TakeawayPage() {
+  const sectionLinks = getMenuPageSectionLinks("takeaway");
+
   return (
     <>
       <PageIntroSection
@@ -47,6 +53,11 @@ export default function TakeawayPage() {
             .
           </>
         }
+      />
+      <MobileSectionPicker
+        links={sectionLinks}
+        pickerLabel="Takeaway"
+        title="Vælg sektion"
       />
       <MenuPageContent priceMode="takeaway" />
     </>
