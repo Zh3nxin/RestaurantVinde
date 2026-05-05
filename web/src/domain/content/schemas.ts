@@ -62,6 +62,9 @@ export const buffetPricingSchema = z.object({
     childUnder12: z.number(),
     childUnder3: z.number(),
   }),
+  addOns: z.object({
+    adLibitumDrinks: z.number(),
+  }),
   notes: z.array(z.string()),
   includes: z.array(z.string()),
   sushiIncluded: z.boolean().default(true),

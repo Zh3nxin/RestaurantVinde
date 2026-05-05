@@ -56,7 +56,6 @@ export default function RootLayout({
 }>) {
   const contact = getContactDetails();
   const hours = getOpeningHours();
-  const primaryPhone = contact.phoneNumbers[0]?.replace(/\s+/g, "");
 
   return (
     <html
@@ -136,51 +135,9 @@ export default function RootLayout({
               </div>
             </div>
           </footer>
-
-          <MobileActionBar
-            phone={primaryPhone}
-            mapUrl={contact.map.googleMapsUrl}
-          />
         </div>
       </body>
     </html>
-  );
-}
-
-function MobileActionBar({
-  phone,
-  mapUrl,
-}: {
-  phone?: string;
-  mapUrl: string;
-}) {
-  if (!phone) return null;
-
-  return (
-    <div className="fixed bottom-0 left-0 right-0 border-t border-[var(--border-soft)] bg-[var(--surface)] shadow-[0_-8px_24px_rgba(30,27,19,0.08)] md:hidden">
-      <div className="flex items-center justify-between px-4 py-3 text-sm font-semibold text-[var(--primary)]">
-        <LinkButton href={`tel:${phone}`}>Ring</LinkButton>
-        <LinkButton href={mapUrl}>Find vej</LinkButton>
-        <LinkButton href="#buffet-info">Se buffet</LinkButton>
-      </div>
-    </div>
-  );
-}
-
-function LinkButton({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      className="rounded-[var(--radius-xl)] border border-[var(--primary)]/20 px-4 py-2 text-center"
-      href={href}
-    >
-      {children}
-    </Link>
   );
 }
 

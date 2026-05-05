@@ -25,6 +25,7 @@ export default function Home() {
   const primaryPhone = contact.phoneNumbers[0]?.replace(/\s+/g, "") || "/#contact";
   const weekdayPrice = formatPrice(buffetPricing.dineIn.weekday) ?? "";
   const weekendPrice = formatPrice(buffetPricing.dineIn.weekend) ?? "";
+  const adLibitumPrice = formatPrice(buffetPricing.addOns.adLibitumDrinks) ?? "";
   const restaurantJsonLd = createRestaurantJsonLd({
     contact,
     hours,
@@ -40,6 +41,7 @@ export default function Home() {
         }}
       />
       <HomeHero
+        adLibitumPrice={adLibitumPrice}
         bookHref={`tel:${primaryPhone}`}
         weekdayPrice={weekdayPrice}
         weekendPrice={weekendPrice}
