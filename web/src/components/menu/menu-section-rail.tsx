@@ -25,6 +25,14 @@ export function MenuSectionRail({ links }: MenuSectionRailProps) {
     const updateActiveSection = () => {
       const threshold = 156;
       let nextActiveId = sections[0]?.id ?? "";
+      const isNearPageBottom =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 8;
+
+      if (isNearPageBottom) {
+        setActiveId(sections.at(-1)?.id ?? nextActiveId);
+        return;
+      }
 
       for (const section of sections) {
         const top = section.getBoundingClientRect().top;
