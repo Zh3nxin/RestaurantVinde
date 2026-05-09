@@ -34,5 +34,9 @@ jobs:
           server: ${{ secrets.SIMPLY_FTP_SERVER }}
           username: ${{ secrets.SIMPLY_FTP_USERNAME }}
           password: ${{ secrets.SIMPLY_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          security: loose
+          timeout: 60000
           local-dir: web/out/
           server-dir: /public_html/
