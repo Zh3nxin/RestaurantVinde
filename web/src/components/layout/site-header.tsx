@@ -13,15 +13,18 @@ const headerLinks = [
 ];
 
 function isHeaderLinkActive(href: string, pathname: string, hash: string) {
+  const normalizedPathname =
+    pathname !== "/" && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+
   if (href === "/") {
-    return pathname === "/" && hash !== "#contact";
+    return normalizedPathname === "/" && hash !== "#contact";
   }
 
   if (href === "/#contact") {
-    return pathname === "/" && hash === "#contact";
+    return normalizedPathname === "/" && hash === "#contact";
   }
 
-  return pathname === href;
+  return normalizedPathname === href;
 }
 
 export function SiteHeader() {
