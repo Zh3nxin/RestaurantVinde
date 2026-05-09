@@ -28,15 +28,22 @@ jobs:
         run: npm run build
         working-directory: web
 
-      - name: Deploy to Simply via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.SIMPLY_FTP_SERVER }}
-          username: ${{ secrets.SIMPLY_FTP_USERNAME }}
-          password: ${{ secrets.SIMPLY_FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          security: loose
-          timeout: 60000
-          local-dir: web/out/
-          server-dir: /public_html/
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Configure SSH key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SIMPLY_SSH_PRIVATE_KEY }}" > ~/.ssh/simply_deploy_key
+          chmod 600 ~/.ssh/simply_deploy_key
+
+      - name: Deploy to Simply via SSH
+        env:
+          SIMPLY_SSH_HOST: ${{ secrets.SIMPLY_SSH_HOST }}
+          SIMPLY_SSH_USERNAME: ${{ secrets.SIMPLY_SSH_USERNAME }}
+          SIMPLY_SSH_PASSWORD: ${{ secrets.SIMPLY_SSH_PASSWORD }}
+        run: |
+          sshpass -p "$SIMPLY_SSH_PASSWORD" rsync -avz --delete \
+            -e "ssh -i ~/.ssh/simply_deploy_key -o StrictHostKeyChecking=no" \
+            web/out/ \
+            "$SIMPLY_SSH_USERNAME@$SIMPLY_SSH_HOST:public_html/"
